@@ -1,10 +1,13 @@
 package com.example.restservice;
 
+import com.example.restservice.services.OverpassTurboService;
 import com.example.restservice.tos.Gps;
 import com.example.restservice.tos.Node;
 import com.example.restservice.utils.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,9 +16,17 @@ import java.util.List;
 @RestController
 public class NodesController {
 
+	@Autowired
+	OverpassTurboService overpassTurboService;
 
 	@GetMapping("/nodes")
-	public List<Node> getNodesByGps(@RequestBody Gps gps) {
+	public List<Node> getNodesByGps(@RequestBody Gps gps) throws IOException {
+		List<Node> nodes = overpassTurboService.getNodesByGps(OverpassTurboService.query_drinkingwater_and_postbox, gps, new BigDecimal(2000));
+		return nodes;
+	}
+
+	@GetMapping("/nodes/dummy")
+	public List<Node> getDummyNodesByGps(@RequestBody Gps gps) {
 		List<Node> nodes = new ArrayList<>();
 		nodes.add(dummyNode());
 		nodes.add(dummyNode());
