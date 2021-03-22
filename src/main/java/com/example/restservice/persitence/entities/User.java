@@ -20,6 +20,6 @@ public class User {
     private UserRole userRole;
 
     @OneToMany(mappedBy = "node")
-    private Set<Node> nodes;
+    private Set<UserNodeAttributes> nodes;
 
 }

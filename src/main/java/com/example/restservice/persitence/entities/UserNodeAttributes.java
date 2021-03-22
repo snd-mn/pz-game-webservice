@@ -1,0 +1,25 @@
+package com.example.restservice.persitence.entities;
+
+import lombok.Data;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Data
+@Entity
+public class UserNodeAttributes implements Serializable {
+
+    @Id
+    Long id;
+
+    @ManyToOne
+    @JoinColumn(name=" user_id")
+    User user;
+
+    @ManyToOne
+    @JoinColumn(name=" node_id")
+    Node node;
+
+    Long nextAvailiablity;
+    String deineMudda;
+}

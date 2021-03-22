@@ -17,5 +17,5 @@ public class Node {
     private DisplayType displayType;
 
     @OneToMany(mappedBy = "user")
-    private Set<User> users;
+    private Set<UserNodeAttributes> users;
 }
