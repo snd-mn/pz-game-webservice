@@ -1,4 +1,4 @@
-package com.example.restservice.tos;
+package com.example.restservice.utils;
 
 import java.math.BigDecimal;
 

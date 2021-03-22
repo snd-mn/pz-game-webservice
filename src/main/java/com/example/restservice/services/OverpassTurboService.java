@@ -1,7 +1,8 @@
 package com.example.restservice.services;
 
-import com.example.restservice.tos.Gps;
-import com.example.restservice.tos.Node;
+import com.example.restservice.utils.Gps;
+import com.example.restservice.utils.Node;
+import com.example.restservice.tos.OverpassTurboResult;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -11,15 +12,9 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -83,7 +78,7 @@ public class OverpassTurboService {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.postForEntity( HTTPS_OVERPASS_API_DE_API_INTERPRETER, request , String.class );
+        ResponseEntity<OverpassTurboResult> response = restTemplate.postForEntity( HTTPS_OVERPASS_API_DE_API_INTERPRETER, request , OverpassTurboResult.class );
 
         System.out.println(response.getBody());
 

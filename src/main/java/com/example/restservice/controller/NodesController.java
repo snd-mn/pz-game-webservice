@@ -1,8 +1,8 @@
-package com.example.restservice;
+package com.example.restservice.controller;
 
 import com.example.restservice.services.OverpassTurboService;
-import com.example.restservice.tos.Gps;
-import com.example.restservice.tos.Node;
+import com.example.restservice.utils.Gps;
+import com.example.restservice.utils.Node;
 import com.example.restservice.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
