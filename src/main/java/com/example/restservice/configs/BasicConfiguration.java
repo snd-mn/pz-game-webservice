@@ -1,4 +1,4 @@
-package com.example.restservice.config;
+package com.example.restservice.configs;
 
 import org.springframework.context.annotation.Configuration;
 

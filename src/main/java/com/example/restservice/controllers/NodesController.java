@@ -1,4 +1,4 @@
-package com.example.restservice.controller;
+package com.example.restservice.controllers;
 
 import com.example.restservice.services.OverpassTurboService;
 import com.example.restservice.utils.Gps;
