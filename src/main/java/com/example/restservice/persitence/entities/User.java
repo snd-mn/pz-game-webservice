@@ -5,7 +5,6 @@ import com.example.restservice.utils.UserRole;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 @Data
@@ -20,6 +19,6 @@ public class User {
     private UserRole userRole;
 
     @OneToMany(mappedBy = "node")
-    private Set<UserNodeAttributes> nodes;
+    private Set<UserNode> nodes;
 
 }

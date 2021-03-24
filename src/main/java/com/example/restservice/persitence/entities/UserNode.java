@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
-public class UserNodeAttributes implements Serializable {
+public class UserNode implements Serializable {
 
     @Id
     Long id;
@@ -21,5 +21,4 @@ public class UserNodeAttributes implements Serializable {
     Node node;
 
     Long nextAvailiablity;
-    String deineMudda;
 }
