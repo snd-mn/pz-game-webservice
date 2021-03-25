@@ -1,8 +1,0 @@
-com\example\restservice\RestServiceApplication.class
-com\example\restservice\utils\Constants.class
-com\example\restservice\tos\Node.class
-com\example\restservice\NodesController.class
-com\example\restservice\tos\Gps.class
-com\example\restservice\GreetingController.class
-com\example\restservice\services\OverpassTurboService.class
-com\example\restservice\Greeting.class
