@@ -15,4 +15,5 @@ public class TargetSystem {
     String user;
     String password;
     String token;
+    //TODO PERSONAL TOKEN
 }

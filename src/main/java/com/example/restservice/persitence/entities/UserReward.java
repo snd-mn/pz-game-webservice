@@ -2,10 +2,7 @@ package com.example.restservice.persitence.entities;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -24,5 +21,6 @@ public class UserReward implements Serializable {
     @JoinColumn(name=" reward_id")
     Node node;
 
-    Date usedAt;
+    @Column(columnDefinition = "datetime default null")
+    Date used;
 }

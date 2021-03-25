@@ -15,9 +15,11 @@ public class User {
     private Long id;
     private String name;
     private String nick;
+    @Column(unique=true)
     private String email;
     private UserRole userRole;
 
+    //jackson ignore?
     @OneToMany(mappedBy = "node")
     private Set<UserNode> nodes;
 
