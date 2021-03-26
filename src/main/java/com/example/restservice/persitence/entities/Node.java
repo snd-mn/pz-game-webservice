@@ -1,6 +1,9 @@
 package com.example.restservice.persitence.entities;
 
 import com.example.restservice.utils.NodeType;
+import com.example.restservice.utils.json.serializer.PointSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import com.vividsolutions.jts.geom.Point;
 
@@ -17,21 +20,12 @@ public class Node {
     private Long osmId;
     private Long respawnTime;
     private NodeType nodeType;
-    //TODO Jackson magic?
-    //    {
-    //        "id": 1,
-    //            "osmId": 295647998,
-    //            "respawnTime": 590,
-    //            "nodeType": "ORE",
-    //            "gps": {
-    //        "envelope": {
-    //            "envelope": {
-    //                "envelope": {
-    //                    "envelope": {
-    //                        "envelope": {
+
     @Column(nullable=false)
+    @JsonSerialize(using = PointSerializer.class)
     private Point gps;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<UserNode> users;
 }

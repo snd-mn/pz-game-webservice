@@ -3,26 +3,19 @@ package com.example.restservice.utils;
 import java.math.BigDecimal;
 
 public class Gps {
-    private BigDecimal lon = BigDecimal.ZERO;
     private BigDecimal lat = BigDecimal.ZERO;
+    private BigDecimal lon = BigDecimal.ZERO;
 
     public Gps(){
 
     }
 
     public Gps(
-            BigDecimal lon,
-            BigDecimal lat
+            BigDecimal lat,
+            BigDecimal lon
+
     ) {
-        this.lon = lon;
         this.lat = lat;
-    }
-
-    public BigDecimal getLon() {
-        return lon;
-    }
-
-    public void setLon(BigDecimal lon) {
         this.lon = lon;
     }
 
@@ -32,5 +25,13 @@ public class Gps {
 
     public void setLat(BigDecimal lat) {
         this.lat = lat;
+    }
+
+    public BigDecimal getLon() {
+        return lon;
+    }
+
+    public void setLon(BigDecimal lon) {
+        this.lon = lon;
     }
 }
