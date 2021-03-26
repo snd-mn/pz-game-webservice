@@ -1,7 +1,7 @@
 package com.example.restservice.services;
 
 import com.example.restservice.utils.Gps;
-import com.example.restservice.utils.Node;
+import com.example.restservice.utils.OverpassTurboNode;
 import com.example.restservice.tos.OverpassTurboResult;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +19,7 @@ import java.util.List;
 
 @Service
 public class OverpassTurboService {
+
     public static final String PARAM_RADIUS = "\\_\\_RADIUS\\_\\_";
     public static final String PARAM_LATITUDE = "\\_\\_LATITUDE\\_\\_";
     public static final String PARAM_LONGITUDE = "\\_\\_LONGITUDE\\_\\_";
@@ -53,22 +54,8 @@ public class OverpassTurboService {
         return preparedQuery;
     }
 
-    public List<Node> getNodesByGps(String query, Gps gps, BigDecimal radius) throws IOException {
-        List<Node> ret = new ArrayList<>();
+    public OverpassTurboResult getNodesByGps(String query, Gps gps, BigDecimal radius) throws IOException {
         String preparedQuery = prepareQuery(query, gps, radius);
-
-//        URL url = new URL(HTTPS_OVERPASS_API_DE_API_INTERPRETER);
-//        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-//        con.setRequestMethod("POST");
-//        con.setRequestProperty();
-
-//        RestTemplate restTemplate = new RestTemplate();
-//        String fooResourceUrl
-//                = "http://localhost:8080/spring-rest/foos";
-//        HashMap<String, Object > map = new HashMap<>();
-//        map.put("form-data", )
-//        String response = restTemplate.getForObject(HTTPS_OVERPASS_API_DE_API_INTERPRETER, String.class, map);
-//        System.out.println(response);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -79,9 +66,6 @@ public class OverpassTurboService {
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<OverpassTurboResult> response = restTemplate.postForEntity( HTTPS_OVERPASS_API_DE_API_INTERPRETER, request , OverpassTurboResult.class );
-
-        System.out.println(response.getBody());
-
-        return ret;
+        return response.getBody();
     }
 }

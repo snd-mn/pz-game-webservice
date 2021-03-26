@@ -1,19 +1,15 @@
 package com.example.restservice.utils;
 
-import com.example.restservice.utils.DisplayType;
-import com.example.restservice.utils.Gps;
-
 import java.util.HashMap;
-
-public class Node {
+//TODO why?
+public class OverpassTurboNode {
 
     long id = 0l;
     int flags = 0;
     Gps gps = new Gps();
     HashMap<Object,Object> attributes = new HashMap<>();
-    DisplayType displayType;
 
-    public Node(){
+    public OverpassTurboNode(){
     }
 
     public long getId() {
@@ -46,13 +42,5 @@ public class Node {
 
     public void setAttributes(HashMap<Object, Object> attributes) {
         this.attributes = attributes;
-    }
-
-    public DisplayType getDisplayType() {
-        return displayType;
-    }
-
-    public void setDisplayType(DisplayType displayType) {
-        this.displayType = displayType;
     }
 }
