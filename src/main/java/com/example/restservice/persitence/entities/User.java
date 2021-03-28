@@ -22,6 +22,11 @@ public class User {
 
     //jackson ignore?
     @OneToMany(mappedBy = "node")
-    private Set<UserNode> nodes;
+    private Set<UserNode> userNodes;
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserReward> userRewards;
+
+
 
 }

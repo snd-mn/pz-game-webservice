@@ -13,8 +13,12 @@ public class Reward {
     @Id
     Long id;
 
-    @OneToMany(mappedBy = "user")
-    private Set<UserNode> users;
+    @OneToMany(mappedBy = "reward")
+    private Set<UserReward> userRewards;
+
+    @OneToMany(mappedBy = "reward")
+    Set<NodeTypeReward> nodeTypeRewards;
+
 
 
 

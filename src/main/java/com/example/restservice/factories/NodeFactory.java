@@ -2,11 +2,8 @@ package com.example.restservice.factories;
 
 import com.example.restservice.persitence.entities.Node;
 import com.example.restservice.tos.OverpassTurboElement;
-import com.example.restservice.tos.OverpassTurboResult;
-import com.example.restservice.utils.NodeType;
+import com.example.restservice.utils.ResourceType;
 import com.example.restservice.utils.SpatialUtils;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.WKTReader;
 import org.springframework.stereotype.Service;
 import com.vividsolutions.jts.geom.Point;
 
@@ -19,7 +16,7 @@ import java.util.Random;
 public class NodeFactory {
     //TODO RANDOM STREAM
     private Random random = new Random();
-
+    //TODO map OverpassTurboNodeAttributes to NodeType
     public Collection<Node> fromOverpassTurboResult(List<OverpassTurboElement> turboElements) throws Exception{
         Collection<Node> nodes = new ArrayList<>();
         for (OverpassTurboElement element : turboElements) {
@@ -35,10 +32,10 @@ public class NodeFactory {
     }
 
 
-    public NodeType getNodeType(){
+    public ResourceType getNodeType(){
         //PFUI BAH
-        int r = random.nextInt(NodeType.TRANSFER_STATION.ordinal());
-        return NodeType.valueOf(r).get();
+        int r = random.nextInt(ResourceType.TRANSFER_STATION.ordinal());
+        return ResourceType.valueOf(r).get();
     }
 
 
@@ -48,7 +45,7 @@ public class NodeFactory {
         node.setGps(point);
         node.setOsmId(turboElement.getId());
         node.setRespawnTime(getRespawnTime());
-        node.setNodeType(getNodeType());
+//        node.setNodeType(getNodeType());
         return node;
     }
 }

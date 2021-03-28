@@ -20,5 +20,5 @@ public class UserNode implements Serializable {
     @JoinColumn(name=" node_id")
     Node node;
 
-    Long nextAvailiablity;
+    Long nextAvailability;
 }

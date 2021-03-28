@@ -1,6 +1,5 @@
 package com.example.restservice.persitence.entities;
 
-import com.example.restservice.utils.NodeType;
 import com.example.restservice.utils.json.serializer.PointSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -16,9 +15,13 @@ public class Node {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(unique=true, nullable=true)
     private Long osmId;
+
     private Long respawnTime;
+
+    @ManyToOne
     private NodeType nodeType;
 
     @Column(nullable=false)
@@ -27,5 +30,5 @@ public class Node {
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private Set<UserNode> users;
+    private Set<UserNode> userNodes;
 }

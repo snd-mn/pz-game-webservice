@@ -1,5 +1,6 @@
 package com.example.restservice.persitence.entities;
 
+import com.example.restservice.persitence.entities.mappedsuperclasses.TimeStampsBaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,18 +9,18 @@ import java.util.Date;
 
 @Data
 @Entity
-public class UserReward implements Serializable {
+public class UserReward extends TimeStampsBaseEntity implements Serializable {
 
     @Id
     Long id;
 
     @ManyToOne
-    @JoinColumn(name=" user_id")
+    @JoinColumn(name="user_id")
     User user;
 
     @ManyToOne
-    @JoinColumn(name=" reward_id")
-    Node node;
+    @JoinColumn(name="reward_id")
+    Reward reward;
 
     @Column(columnDefinition = "datetime default null")
     Date used;

@@ -34,6 +34,8 @@ public class NodeController {
     public Collection<Node> getNodesFromGps(@RequestBody Gps gps) throws Exception {
         OverpassTurboResult turboResult = overpassTurboService.getNodesByGps(OverpassTurboService.query_postbox, gps, Constants.OSM_DEFAULT_SCAN_RADIUS);
         Collection<Node> nodes = nodesService.createNodesFromOverpassTurboResult(turboResult);
+        //TODO filter nodes by availability
+
         return nodes;
     }
 }
