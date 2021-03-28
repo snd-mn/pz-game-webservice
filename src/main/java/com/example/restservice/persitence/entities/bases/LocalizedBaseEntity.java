@@ -1,4 +1,4 @@
-package com.example.restservice.persitence.entities.mappedsuperclasses;
+package com.example.restservice.persitence.entities.bases;
 
 import com.example.restservice.persitence.entities.Localized;
 import javax.persistence.CascadeType;

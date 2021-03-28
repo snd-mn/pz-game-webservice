@@ -19,6 +19,7 @@ public class User {
     @Column(unique=true)
     private String email;
     private UserRole userRole;
+    private Long experience;
 
     //jackson ignore?
     @OneToMany(mappedBy = "node")
@@ -27,6 +28,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<UserReward> userRewards;
 
-
-
+    @OneToMany(mappedBy = "user")
+    private Set<InventoryItem> inventoryItems;
 }

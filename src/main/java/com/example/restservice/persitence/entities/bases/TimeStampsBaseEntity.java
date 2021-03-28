@@ -1,4 +1,4 @@
-package com.example.restservice.persitence.entities.mappedsuperclasses;
+package com.example.restservice.persitence.entities.bases;
 
 import com.example.restservice.persitence.entities.Localized;
 import com.example.restservice.persitence.entities.User;
@@ -9,7 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class LocalizedTimeStampsBaseEntity extends LocalizedBaseEntity{
+public class TimeStampsBaseEntity {
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="NAME_ID")
+    private Localized nameStrings = new Localized();
+
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="DESCRIPTION_ID")
+    private Localized descriptionStrings = new Localized();
 
     private Date created;
 

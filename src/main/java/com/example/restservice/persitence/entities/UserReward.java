@@ -1,6 +1,6 @@
 package com.example.restservice.persitence.entities;
 
-import com.example.restservice.persitence.entities.mappedsuperclasses.TimeStampsBaseEntity;
+import com.example.restservice.persitence.entities.bases.TimeStampsBaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,5 +23,5 @@ public class UserReward extends TimeStampsBaseEntity implements Serializable {
     Reward reward;
 
     @Column(columnDefinition = "datetime default null")
-    Date used;
+    Date transferredToInventory;
 }
