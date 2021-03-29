@@ -16,7 +16,7 @@ public class Node {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(unique=true, nullable=true)
+//    @Column(unique=true, nullable=true) //Quatsch
     private Long osmId;
 
     private Long respawnTime;

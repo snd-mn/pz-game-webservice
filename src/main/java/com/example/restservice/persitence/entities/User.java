@@ -13,13 +13,18 @@ public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
     private String name;
     @Column(unique=true)
     private String nick;
     @Column(unique=true)
     private String email;
+    @Column(nullable = false)
     private UserRole userRole;
+    @Column(columnDefinition = "bigint not null default 1")
     private Long experience;
+    @Column(nullable = false)
+    private String password;
 
     //jackson ignore?
     @OneToMany(mappedBy = "node")
