@@ -1,6 +1,7 @@
 package com.example.restservice.persitence.entities;
 
 import com.example.restservice.persitence.entities.bases.TimeStampsBaseEntity;
+import com.example.restservice.persitence.entities.security.User;
 import lombok.Data;
 
 import javax.persistence.*;

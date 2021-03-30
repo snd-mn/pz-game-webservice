@@ -1,13 +1,11 @@
 package com.example.restservice.persitence.repositories;
 
 import com.example.restservice.persitence.entities.Node;
-import com.example.restservice.persitence.entities.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.List;
 
 @Repository

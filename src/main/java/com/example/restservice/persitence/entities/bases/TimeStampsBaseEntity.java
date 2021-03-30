@@ -1,7 +1,8 @@
 package com.example.restservice.persitence.entities.bases;
 
 import com.example.restservice.persitence.entities.Localized;
-import com.example.restservice.persitence.entities.User;
+import com.example.restservice.persitence.entities.security.User;
+
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;

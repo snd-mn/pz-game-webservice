@@ -1,8 +1,9 @@
 package com.example.restservice.utils;
 
-import com.example.restservice.persitence.entities.User;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import com.example.restservice.persitence.entities.security.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,7 +29,7 @@ public class UserPrincipal  implements UserDetails {
     //TODO check if columns get generated -> should not
     @Override
     public String getUsername() {
-        return this.getUser().getNick();
+        return this.getUser().getEmail();
     }
 
     @Override
