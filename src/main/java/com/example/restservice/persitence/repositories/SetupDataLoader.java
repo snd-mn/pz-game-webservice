@@ -1,5 +1,6 @@
 package com.example.restservice.persitence.repositories;
 
+import com.example.restservice.configs.auth.AuthFromPropertiesConfiguration;
 import com.example.restservice.persitence.entities.security.Privilege;
 import com.example.restservice.persitence.entities.security.Role;
 import com.example.restservice.persitence.entities.security.User;
@@ -19,6 +20,9 @@ import java.util.List;
 @Component
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
+    public static final String ROLE_SUPER_USER = "ROLE_SUPER_USER";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
+    public static final String ROLE_USER = "ROLE_USER";
     private boolean alreadySetup = false;
 
     @Autowired
@@ -33,6 +37,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    AuthFromPropertiesConfiguration authFromPropertiesConfiguration;
+
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -46,23 +53,28 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
         // == create initial roles
         List<Privilege> super_userPrivileges = Arrays.asList(readPrivilege, writePrivilege);
-        createRoleIfNotFound("ROLE_SUPER_USER", super_userPrivileges);
+        createRoleIfNotFound(ROLE_SUPER_USER, super_userPrivileges);
 
         List<Privilege> adminPrivileges = Arrays.asList(readPrivilege, writePrivilege);
-        createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
+        createRoleIfNotFound(ROLE_ADMIN, adminPrivileges);
 
         List<Privilege> rolePrivileges = new ArrayList<>();
-        createRoleIfNotFound("ROLE_USER", rolePrivileges);
+        createRoleIfNotFound(ROLE_USER, rolePrivileges);
 
-        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-        com.example.restservice.persitence.entities.security.User user = new User();
-        user.setFirstName("superuser");
-        user.setLastName("superuser");
-        user.setEmail("superuser@superuser.com");
-        user.setPassword(passwordEncoder.encode("YSNfChT3I6s4aSxDIo6E"));
-        user.setRoles(Arrays.asList(adminRole));
-        user.setEnabled(true);
-        userRepository.save(user);
+        authFromPropertiesConfiguration.getInital_users().forEach(user ->{
+            Collection<Role> roles = new ArrayList<>();
+            user.getRoles().forEach(role -> {
+                Role roleFromRepo = roleRepository.findByName(role.getName());
+                roles.add(roleFromRepo);
+            });
+            user.setFirstName("");
+            user.setLastName("");
+            user.setEmail(user.getEmail());
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(roles);
+            user.setEnabled(true);
+            userRepository.save(user);
+        });
 
 //        Role basicRole = roleRepository.findByName("ROLE_USER");
 //        User basicUser = new User();
