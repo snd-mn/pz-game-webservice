@@ -32,19 +32,11 @@ public class MemorySecurityConfiguration extends WebSecurityConfigurerAdapter {
     {
         authentication.inMemoryAuthentication()
                 .withUser(authConfiguration.getSuper_user().getName())
-                .password(passwordEncoder().encode(authConfiguration.getSuper_user().getPassword()))
+                .password(authConfiguration.getSuper_user().getPassword())
                 .authorities(UserRole.SUPER_USER.toString())
                 .and().withUser(authConfiguration.getSuper_user().getEmail())
-                .password(passwordEncoder().encode(authConfiguration.getSuper_user().getPassword()))
+                .password(authConfiguration.getSuper_user().getPassword())
                 .authorities(UserRole.SUPER_USER.toString());
-
-        //TODO do i need to register sth here for jpa blubs
-//        authentication.getDefaultUserDetailsService()
     }
 
-    //TODO may move somewhere else so UserConverter can access it too
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }
