@@ -6,11 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-//@EnableConfigurationProperties(AuthFromPropertiesConfiguration.class)
-public class RestServiceApplication {
+public class PzGameWebservice {
 
     public static void main(String[] args) {
-        SpringApplication.run(RestServiceApplication.class, args);
+        SpringApplication.run(PzGameWebservice.class, args);
     }
 
 }
