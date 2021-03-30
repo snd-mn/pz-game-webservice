@@ -1,4 +1,4 @@
-package com.example.restservice.configs;
+package com.example.restservice.configs.auth;
 
 import com.example.restservice.persitence.entities.User;
 import lombok.Data;

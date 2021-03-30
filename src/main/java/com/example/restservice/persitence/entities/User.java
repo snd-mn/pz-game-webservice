@@ -2,14 +2,18 @@ package com.example.restservice.persitence.entities;
 
 
 import com.example.restservice.utils.UserRole;
+import java.util.ArrayList;
+import java.util.Collection;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Set;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
 @Entity
-public class User {
+public class User{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
@@ -35,4 +39,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<InventoryItem> inventoryItems;
+
+
 }

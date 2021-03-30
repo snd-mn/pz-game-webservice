@@ -1,4 +1,4 @@
-package com.example.restservice.configs;
+package com.example.restservice.utils;
 
 import com.example.restservice.persitence.entities.User;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;

@@ -1,6 +1,5 @@
-package com.example.restservice.auth;
+package com.example.restservice.configs.auth;
 
-import com.example.restservice.configs.AuthConfiguration;
 import com.example.restservice.utils.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +37,9 @@ public class MemorySecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().withUser(authConfiguration.getSuper_user().getEmail())
                 .password(passwordEncoder().encode(authConfiguration.getSuper_user().getPassword()))
                 .authorities(UserRole.SUPER_USER.toString());
+
+        //TODO do i need to register sth here for jpa blubs
+//        authentication.getDefaultUserDetailsService()
     }
 
     //TODO may move somewhere else so UserConverter can access it too
