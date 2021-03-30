@@ -8,7 +8,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 //@EnableConfigurationProperties(AuthFromPropertiesConfiguration.class)
-//@ImportResource("classpath:beans.xml")
 public class RestServiceApplication {
 
     public static void main(String[] args) {
