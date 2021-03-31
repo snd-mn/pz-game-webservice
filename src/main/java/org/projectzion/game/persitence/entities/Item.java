@@ -15,10 +15,10 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    Boolean tradeAble;
+    boolean tradeAble = false;
 
     //TODO why did i added this?
-    Boolean useAble;
+    boolean useAble = false;
 
     @OneToMany(mappedBy = "item")
     Collection<ItemCondition> itemConditions;

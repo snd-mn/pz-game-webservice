@@ -14,7 +14,7 @@ public class TargetSystem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String name;
-    java.net.InetAddress ip;
+    String ip;
     String user;
     String password;
     String token;
