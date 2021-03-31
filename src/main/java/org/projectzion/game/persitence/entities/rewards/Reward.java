@@ -1,4 +1,7 @@
-package org.projectzion.game.persitence.entities;
+package org.projectzion.game.persitence.entities.rewards;
+
+import org.projectzion.game.persitence.entities.Item;
+import org.projectzion.game.persitence.entities.NodeTypeReward;
 
 import java.math.BigDecimal;
 import javax.persistence.*;
@@ -16,11 +19,9 @@ public class Reward {
     @OneToMany(mappedBy = "reward")
     private Set<NodeTypeReward> nodeTypeRewards;
 
-    @ManyToOne
-    Item item;
-    BigDecimal itemAmount;
 
-    Long experience;
+
+
 
 
 

@@ -1,4 +1,4 @@
-package org.projectzion.game.persitence.entities.bases;
+package org.projectzion.game.persitence.entities.conditions;
 
 import org.projectzion.game.persitence.entities.NodeType;
 

@@ -3,6 +3,7 @@ package org.projectzion.game.persitence.entities;
 import javax.persistence.*;
 
 import lombok.Data;
+import org.projectzion.game.persitence.entities.rewards.Reward;
 
 @Data
 @Entity

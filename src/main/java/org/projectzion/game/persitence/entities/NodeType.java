@@ -1,7 +1,6 @@
 package org.projectzion.game.persitence.entities;
 
-import org.projectzion.game.persitence.entities.bases.Condition;
-import org.projectzion.game.persitence.entities.bases.LocalizedBaseEntity;
+import org.projectzion.game.persitence.entities.conditions.Condition;
 import org.projectzion.game.utils.ResourceType;
 
 import java.util.Set;
