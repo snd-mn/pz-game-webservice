@@ -7,7 +7,7 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class ConditionBaseEntity extends LocalizedBaseEntity{
+public class ConditionEntity extends LocalizedBaseEntity{
 
     @Id
     Long id;

@@ -30,5 +30,5 @@ public class Node {
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private Set<UserNode> userNodes;
+    private Set<CollectedNodes> collectedNodes;
 }

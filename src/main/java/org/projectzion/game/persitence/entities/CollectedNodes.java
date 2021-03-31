@@ -1,6 +1,5 @@
 package org.projectzion.game.persitence.entities;
 
-import org.projectzion.game.persitence.entities.security.User;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,14 +7,14 @@ import java.io.Serializable;
 
 @Data
 @Entity
-public class UserNode implements Serializable {
+public class CollectedNodes implements Serializable {
 
     @Id
     Long id;
 
     @ManyToOne
-    @JoinColumn(name=" user_id")
-    User user;
+    @JoinColumn(name=" character_id")
+    Character character;
 
     @ManyToOne
     @JoinColumn(name=" node_id")

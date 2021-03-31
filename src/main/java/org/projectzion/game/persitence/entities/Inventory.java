@@ -1,27 +1,23 @@
 package org.projectzion.game.persitence.entities;
 
 import java.math.BigDecimal;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import org.projectzion.game.persitence.entities.security.User;
 import lombok.Data;
 
 @Data
 @Entity
-public class InventoryItem {
+public class Inventory {
     @Id
     Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @JoinColumn(name = "character_id")
+    Character character;
 
     @ManyToOne
     @JoinColumn(name = "item_id")
     Item item;
-
-    BigDecimal amount;
+    BigDecimal item_amount;
 }
