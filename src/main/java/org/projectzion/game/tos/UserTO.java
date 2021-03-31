@@ -8,6 +8,7 @@ import java.util.Collection;
 public class UserTO {
     private Long id;
     private String email;
+    //do not encode please
     private String password;
     private String firstName;
     private String lastName;

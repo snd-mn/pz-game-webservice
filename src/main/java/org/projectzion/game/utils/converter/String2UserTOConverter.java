@@ -1,7 +1,5 @@
 package org.projectzion.game.utils.converter;
 
-import org.projectzion.game.persitence.entities.security.Role;
-import org.projectzion.game.persitence.entities.security.User;
 import org.projectzion.game.tos.UserTO;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.core.convert.converter.Converter;
