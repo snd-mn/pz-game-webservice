@@ -1,4 +1,4 @@
-package org.projectzion.game.utils;
+package org.projectzion.game.utils.setup;
 
 import org.projectzion.game.configs.security.InitialUsersConfig;
 import org.projectzion.game.persitence.entities.security.Privilege;
@@ -26,7 +26,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     public static final String ROLE_SUPER_USER = "ROLE_SUPER_USER";
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
     public static final String ROLE_USER = "ROLE_USER";
-    private boolean alreadySetup = false;
 
     @Autowired
     private UserRepository userRepository;
@@ -46,32 +45,40 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     @Autowired
     UserTO2UserConverter userTO2UserConverter;
 
+    @Autowired
+    SetupState setupState;
+    //TODO just run once
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        if (alreadySetup) {
+        if (setupState.isSetupDone()) {
             return;
         }
 
         // == create initial privileges
         Privilege readPrivilege = createPrivilegeIfNotFound("READ_PRIVILEGE");
-        Privilege writePrivilege = createPrivilegeIfNotFound("WRITE_PRIVILEGE"); 
+        Privilege writePrivilege = createPrivilegeIfNotFound("WRITE_PRIVILEGE");
+
+        Privilege writeSuperUser = createPrivilegeIfNotFound("WRITE_USERS_SUPER_USER");
+        Privilege readSuperUser = createPrivilegeIfNotFound("READ_USERS_SUPER_USER");
+        Privilege writeAdmin = createPrivilegeIfNotFound("WRITE_USERS_ADMIN");
+        Privilege readAdmin = createPrivilegeIfNotFound("READ_USERS_USER");
+        Privilege writeUser = createPrivilegeIfNotFound("WRITE_USERS_USER");
+        Privilege readUser = createPrivilegeIfNotFound("READ_USERS_USER");
 
         // == create initial roles
-        List<Privilege> super_userPrivileges = Arrays.asList(readPrivilege, writePrivilege);
+        List<Privilege> super_userPrivileges = Arrays.asList(readPrivilege, writePrivilege,readSuperUser,writeAdmin,readAdmin,writeUser,readUser);
         createRoleIfNotFound(ROLE_SUPER_USER, super_userPrivileges);
 
-        List<Privilege> adminPrivileges = Arrays.asList(readPrivilege, writePrivilege);
+        List<Privilege> adminPrivileges = Arrays.asList(readPrivilege, writePrivilege,readAdmin,writeUser,readUser);
         createRoleIfNotFound(ROLE_ADMIN, adminPrivileges);
 
-        List<Privilege> rolePrivileges = new ArrayList<>();
+        List<Privilege> rolePrivileges = Arrays.asList(readPrivilege, writePrivilege, readUser);
         createRoleIfNotFound(ROLE_USER, rolePrivileges);
 
         initialUsersConfig.getInital_users().forEach(userTO ->{
             userRepository.save(userTO2UserConverter.convert(userTO));
         });
-
-        alreadySetup = true;
     }
 
     @Transactional
