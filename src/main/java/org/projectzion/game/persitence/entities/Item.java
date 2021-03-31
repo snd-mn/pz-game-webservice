@@ -1,13 +1,15 @@
 package org.projectzion.game.persitence.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name="items")
 public class Item {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     Boolean tradeAble;

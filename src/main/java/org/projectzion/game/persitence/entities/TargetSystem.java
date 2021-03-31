@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Data
 @Entity
+@Table(name="target_systems")
 public class TargetSystem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

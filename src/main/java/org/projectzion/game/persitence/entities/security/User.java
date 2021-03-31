@@ -2,7 +2,6 @@ package org.projectzion.game.persitence.entities.security;
 
 import org.projectzion.game.persitence.entities.Character;
 import org.projectzion.game.persitence.entities.CollectedNodes;
-import org.projectzion.game.persitence.entities.UserReward;
 
 import java.util.Collection;
 import java.util.Set;
@@ -11,7 +10,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "user_account")
+@Table(name = "user_accounts")
 public class User {
 
     @Id
@@ -31,16 +30,8 @@ public class User {
 
     private boolean isUsing2FA;
 
-    //jackson ignore?
-
-
-    @OneToMany(mappedBy = "user")
-    private Set<UserReward> userRewards;
-
     @OneToMany(mappedBy = "user")
     private Set<Character> character;
-
-    //TODO jackson stuff! Usercontroller -> new users -> ret infinite deserializer override? or just a TO instead!
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))

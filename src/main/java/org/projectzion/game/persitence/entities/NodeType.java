@@ -1,17 +1,15 @@
 package org.projectzion.game.persitence.entities;
 
+import org.projectzion.game.persitence.entities.bases.Condition;
 import org.projectzion.game.persitence.entities.bases.LocalizedBaseEntity;
 import org.projectzion.game.utils.ResourceType;
 
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
-public class NodeType extends LocalizedBaseEntity {
+@Table(name="node_types")
+public class NodeType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,6 +19,9 @@ public class NodeType extends LocalizedBaseEntity {
 
     @OneToMany(mappedBy = "nodeType")
     Set<NodeTypeReward> nodeTypeRewards;
+
+    @ManyToMany
+    Set<Condition> conditions;
 
     private ResourceType resourceType;
 

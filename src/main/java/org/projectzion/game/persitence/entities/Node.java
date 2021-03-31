@@ -11,6 +11,7 @@ import java.util.Set;
 
 @Data
 @Entity
+@Table(name="nodes")
 public class Node {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +29,6 @@ public class Node {
     @JsonSerialize(using = PointSerializer.class)
     private Point gps;
 
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
+    @OneToMany(mappedBy = "node")
     private Set<CollectedNodes> collectedNodes;
 }

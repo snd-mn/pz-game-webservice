@@ -1,26 +1,20 @@
 package org.projectzion.game.persitence.entities;
 
 import java.math.BigDecimal;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import java.util.Set;
 
 @Entity
+@Table(name="rewards")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Reward {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     @OneToMany(mappedBy = "reward")
-    private Set<UserReward> userRewards;
-
-    @OneToMany(mappedBy = "reward")
-    Set<NodeTypeReward> nodeTypeRewards;
+    private Set<NodeTypeReward> nodeTypeRewards;
 
     @ManyToOne
     Item item;
