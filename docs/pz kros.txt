@@ -1,0 +1,41 @@
+[ok]target_system.ip? datentyp?
+[ok]condition.item -> mappen
+[  ]rest ops for user
+	[ok]filter fürn export, passwort und rollen muss ja keiner wissen
+	[  ]role hierarchie
+[ok]logging
+	[  ]filename
+[ok]SetupState
+	[ok]entity with key value store
+[  ]//TODO check priviliges here
+[  ]localize entities
+[  ]GameNodeFactory
+	[  ]osm -> node_type mapping 
+		[  ]how to store these ways + relations in my model?
+			[  ]do i have to?
+		[  ]pick osm-nodes of ways
+		[  ]pick osm-random spot on areas
+		[  ]keep distance between game-nodes (of same type)
+			[  ]nodetype min - max distance
+		[  ]how to reduce the amount of osm-calls
+			[  ]save called gps coordinates + call-date?
+				[  ]use quads instead of circles?
+					[  ]create a gps-tilemap 
+						[  ]SpatialConstantsService.java and SpatialConfig.java? could i override the values in the config instead?
+						[  ]switch from BigDecimal for coordinates to doulbe
+						[OK]initialize tile size: @Autowired SpatialConstantsService spatialConstantsService;
+						
+    						[  ]calls to near cells on entering a cell 		
+							XXX
+							XOX
+							XXX
+						[  ]pre calculation?
+						
+						
+						~110m
+						lon			lat
+						50.9425835,	6.7540656
+						50.935641, 	6.772408
+						
+						u=> 40.030,173592041145444491001989747
+						6371/40.030,173592041145444491001989747*200 -> lat||lon 
