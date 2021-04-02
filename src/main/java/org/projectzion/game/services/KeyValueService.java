@@ -17,9 +17,6 @@ import java.util.Date;
 public class KeyValueService {
 
     @Autowired
-    ApplicationContext applicationContext;
-
-    @Autowired
     KeyValueRepository keyValueRepository;
 
     public ObjectMapper objectMapper;

@@ -7,6 +7,7 @@ import org.projectzion.game.persitence.entities.security.User;
 
 import javax.persistence.*;
 
+//TODO extend with Timestamps base entity mopped
 @Data
 @Entity
 @Table(name = "key_values")
