@@ -1,7 +1,7 @@
 package org.projectzion.game.persitence.entities;
 
 import org.projectzion.game.persitence.entities.conditions.Condition;
-import org.projectzion.game.utils.ResourceType;
+import org.projectzion.game.utils.DisplayResourceType;
 
 import java.util.Set;
 import javax.persistence.*;
@@ -22,7 +22,10 @@ public class NodeType {
     @ManyToMany
     Set<Condition> conditions;
 
-    private ResourceType resourceType;
+    @OneToMany(mappedBy = "nodeType")
+    Set<OsmMatcherNodeType> osmMatcherNodeTypes;
+
+    private DisplayResourceType displayResourceType;
 
     private Long cooldown;
     //TODO maybe point / area, useable at all, collectable, something i dont know yet

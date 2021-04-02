@@ -2,6 +2,7 @@ package org.projectzion.game.persitence.entities.misc;
 
 import lombok.Data;
 import org.apache.catalina.core.ApplicationContext;
+import org.projectzion.game.persitence.entities.bases.LocalizedTimeStampsBaseEntity;
 import org.projectzion.game.persitence.entities.security.User;
 
 import javax.persistence.*;
