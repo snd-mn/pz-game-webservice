@@ -4,6 +4,7 @@ import org.projectzion.game.persitence.entities.Node;
 import org.projectzion.game.scoped.request.RequestScoped;
 import org.projectzion.game.services.NodesService;
 import org.projectzion.game.services.OverpassTurboService;
+import org.projectzion.game.services.SpatialConstantsService;
 import org.projectzion.game.tos.OverpassTurboResult;
 import org.projectzion.game.utils.Constants;
 import org.projectzion.game.utils.Gps;
@@ -31,9 +32,14 @@ public class NodeController {
     @Autowired
     RequestScoped requestScoped;
 
+    @Autowired
+    SpatialConstantsService spatialConstantsService;
+
     //TODO requesting user
     @GetMapping("node/get") //51.50887814714403, 7.464912957132908
     public Collection<Node> getNodesFromGps(@RequestBody Gps gps) throws Exception {
+
+        logger.error("x: " + spatialConstantsService.getTileSizeX() + " y: " + spatialConstantsService.getTileSizeY());
         //TODO check priviliges here
         requestScoped.currentUserPrincipal();
         OverpassTurboResult turboResult = overpassTurboService.getNodesByGps(OverpassTurboService.query_postbox, gps, Constants.OSM_DEFAULT_SCAN_RADIUS);
