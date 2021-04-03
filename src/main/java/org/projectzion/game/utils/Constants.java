@@ -14,6 +14,6 @@ public class Constants {
     //////
     //OVERPASS-TURBO-STUFF
     //////
-    //TODO application-properties? -> configuration!
+    //TODO application-properties? -> configuration! //tiles instead
     public static final BigDecimal OSM_DEFAULT_SCAN_RADIUS = new BigDecimal(500);
 }
