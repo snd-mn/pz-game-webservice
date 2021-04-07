@@ -17,7 +17,6 @@ public class Node {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @Column(unique=true, nullable=true) //Quatsch
     private Long osmId;
 
     private Long respawnTime;
@@ -31,4 +30,7 @@ public class Node {
 
     @OneToMany(mappedBy = "node")
     private Set<CollectedNodes> collectedNodes;
+
+    @ManyToOne
+    private Tile tile;
 }

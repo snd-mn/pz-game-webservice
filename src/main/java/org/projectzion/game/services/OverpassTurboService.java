@@ -1,7 +1,9 @@
 package org.projectzion.game.services;
 
+import org.projectzion.game.configs.OverpassTurboConfig;
 import org.projectzion.game.utils.Gps;
 import org.projectzion.game.tos.OverpassTurboResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -17,10 +19,12 @@ import java.math.BigDecimal;
 @Service
 public class OverpassTurboService {
 
+    @Autowired
+    OverpassTurboConfig overpassTurboConfig;
+
     public static final String PARAM_RADIUS = "\\_\\_RADIUS\\_\\_";
     public static final String PARAM_LATITUDE = "\\_\\_LATITUDE\\_\\_";
     public static final String PARAM_LONGITUDE = "\\_\\_LONGITUDE\\_\\_";
-    public static final String HTTPS_OVERPASS_API_DE_API_INTERPRETER = "https://overpass-api.de/api/interpreter";
 
     public static final String query_drinkingwater = "[out:json]; \n" +
             "node\n" +
@@ -62,7 +66,7 @@ public class OverpassTurboService {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<OverpassTurboResult> response = restTemplate.postForEntity( HTTPS_OVERPASS_API_DE_API_INTERPRETER, request , OverpassTurboResult.class );
+        ResponseEntity<OverpassTurboResult> response = restTemplate.postForEntity( overpassTurboConfig.getInterpreterUrl(), request , OverpassTurboResult.class );
         return response.getBody();
     }
 }
