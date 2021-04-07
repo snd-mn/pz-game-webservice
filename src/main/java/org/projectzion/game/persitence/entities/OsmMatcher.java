@@ -1,7 +1,7 @@
 package org.projectzion.game.persitence.entities;
 
 import lombok.Data;
-import org.projectzion.game.utils.OsmGeometryType;
+import org.projectzion.game.utils.OverpassTurboNodeType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -22,7 +22,7 @@ public class OsmMatcher {
 
     private BigDecimal maxDistance;
 
-    private OsmGeometryType map2osmGeometryType;
+    private OverpassTurboNodeType map2OverpassTurboNodeType;
 
     private Long minCooldown;
 

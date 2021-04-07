@@ -1,14 +1,26 @@
 package org.projectzion.game.utils;
 
-public enum OsmGeometryType {
+import lombok.Data;
+import lombok.Getter;
+
+public enum OverpassTurboNodeType {
     NODE("node", false),
     WAY("way",false),
-    RELATION("relation",false),
+    RELATION("rel",false),
+    NWR("nwr",false),
+    NW("nw",false),
+    NR("nr",false),
+    WR("wr",false),
+    DERIVED("derived",false),
+    AREA("area",false);
+
     //is more a way which connects start and end, to get e.g. green fields there have to be more e.g.: tag -> "natural=wood"
-    AREA("way",true);
+    @Getter
     private final String osmName;
+    @Getter
     private final boolean checkConnectedEnds;
-    OsmGeometryType(String osmName, boolean checkConnectedEnds){
+
+    OverpassTurboNodeType(String osmName, boolean checkConnectedEnds){
         this.osmName = osmName; this.checkConnectedEnds = checkConnectedEnds;
     }
 }

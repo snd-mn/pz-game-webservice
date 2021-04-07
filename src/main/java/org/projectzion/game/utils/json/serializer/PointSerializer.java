@@ -16,12 +16,9 @@ public class PointSerializer extends JsonSerializer<Point> {
 
     @Override
     public void serialize(Point point, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        double x = point.getCoordinate().x;
-        double y = point.getCoordinate().y;
         Gps gps = new Gps();
-        gps.setLat(new BigDecimal(x));
-        gps.setLon(new BigDecimal(y));
-//        jsonGenerator.writeString(ow.writeValueAsString(gps));
+        gps.setLon(point.getCoordinate().x);
+        gps.setLat(point.getCoordinate().y);
         jsonGenerator.writeObject(gps);
     }
 

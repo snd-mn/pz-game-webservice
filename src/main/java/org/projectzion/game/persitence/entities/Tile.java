@@ -14,9 +14,18 @@ public class Tile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-
+    @Column(nullable = false)
     int x;
+    @Column(nullable = false)
     int y;
+    @Column(nullable = false)
+    double bboxEast;
+    @Column(nullable = false)
+    double bboxWest;
+    @Column(nullable = false)
+    double bboxSouth;
+    @Column(nullable = false)
+    double bboxNorth;
 
     Date lastFactoryRun;
 

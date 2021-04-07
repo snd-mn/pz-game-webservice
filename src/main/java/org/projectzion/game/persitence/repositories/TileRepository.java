@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TileRepository extends CrudRepository<Tile, String> {
-    @Query("SELECT t FROM Tile t where T.x = :x and T.y = :y")
+    @Query("SELECT t FROM Tile t where t.x = :x and t.y = :y")
     Tile findByXY(@Param("x")int x, @Param("y")int y);
 }

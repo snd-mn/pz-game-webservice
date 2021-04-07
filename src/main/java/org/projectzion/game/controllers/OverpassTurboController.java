@@ -1,6 +1,6 @@
 package org.projectzion.game.controllers;
 
-import org.projectzion.game.services.OverpassTurboService;
+import org.projectzion.game.services.overpass.turbo.OverpassTurboService;
 import org.projectzion.game.tos.OverpassTurboResult;
 import org.projectzion.game.utils.Gps;
 import org.projectzion.game.utils.OverpassTurboNode;
@@ -49,8 +49,8 @@ public class OverpassTurboController {
 		OverpassTurboNode node = new OverpassTurboNode();
 		node.setId((long) (Math.random()*100));
 
-		node.getGps().setLat(new BigDecimal(Math.random()*10));
-		node.getGps().setLon(new BigDecimal(Math.random()*10));
+		node.getGps().setLat((Math.random()*10));
+		node.getGps().setLon((Math.random()*10));
 
 		int flags = node.getFlags();
 		flags |= 1 << Constants.NODE_FLAG_USABLE;

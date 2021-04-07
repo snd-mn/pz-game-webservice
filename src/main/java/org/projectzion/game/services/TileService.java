@@ -5,6 +5,8 @@ import org.projectzion.game.persitence.repositories.TileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class TileService {
 
@@ -15,7 +17,11 @@ public class TileService {
     TileRepository tileRepository;
 
     public Tile getTileFromGps(double x, double y){
-        return getTileFromGps(getTileCoordinatesFromGps(x,y));
+        return getTileFromCoords(getTileCoordinatesFromGps(x,y));
+    }
+
+    public Tile createTileFromGps(double x, double y){
+        return createTileFromCoords(getTileCoordinatesFromGps(x,y));
     }
 
     public int[] getTileCoordinatesFromGps(double x, double y){
@@ -28,9 +34,22 @@ public class TileService {
         return new int[]{qx,qy};
     }
 
-    public Tile getTileFromGps(int[] xy){
-        //futuretodo is hashing -> id -> getById faster?
-        //TODO redis!!!
-        return tileRepository.findByXY(xy[0],xy[1]);
+    public Tile getTileFromCoords(int[] xy){
+        Tile tile = tileRepository.findByXY(xy[0],xy[1]);
+        return tile;
+    }
+
+    public Tile createTileFromCoords(int[] xy){
+        Tile tile = new Tile();
+        tile.setX(xy[0]);
+        tile.setY(xy[1]);
+
+        tile.setBboxEast(xy[0]*spatialConstantsService.getTileSizeX());
+        tile.setBboxWest(xy[0]*spatialConstantsService.getTileSizeX() + spatialConstantsService.getTileSizeX());
+        tile.setBboxSouth(xy[1]*spatialConstantsService.getTileSizeY());
+        tile.setBboxNorth(xy[1]*spatialConstantsService.getTileSizeY() + spatialConstantsService.getTileSizeY());
+
+        tileRepository.save(tile);
+        return tile;
     }
 }
