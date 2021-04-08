@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class NodesService {
+public class NodeService {
 
     @Autowired
     NodeRepository nodeRepository;
@@ -47,5 +47,9 @@ public class NodesService {
         nodes.addAll(allreadyExistingNodes);
         nodes.addAll(createdNodes);
         return nodes;
+    }
+
+    public void saveNodes(List<Node> nodes) {
+        nodeRepository.saveAll(nodes);
     }
 }

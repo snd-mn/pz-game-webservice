@@ -2,7 +2,7 @@ package org.projectzion.game.controllers;
 
 import org.projectzion.game.persitence.entities.Node;
 import org.projectzion.game.scoped.request.RequestScoped;
-import org.projectzion.game.services.NodesService;
+import org.projectzion.game.services.NodeService;
 import org.projectzion.game.services.overpass.turbo.OverpassTurboService;
 import org.projectzion.game.services.SpatialConstantsService;
 import org.projectzion.game.tos.OverpassTurboResult;
@@ -24,7 +24,7 @@ public class NodeController {
     Logger logger = LoggerFactory.getLogger(NodeController.class);
 
     @Autowired
-    NodesService nodesService;
+    NodeService nodeService;
 
     @Autowired
     OverpassTurboService overpassTurboService;
@@ -43,7 +43,7 @@ public class NodeController {
         //TODO check priviliges here
         requestScoped.currentUserPrincipal();
         OverpassTurboResult turboResult = overpassTurboService.getNodesByGps(OverpassTurboService.query_postbox, gps, Constants.OSM_DEFAULT_SCAN_RADIUS);
-        Collection<Node> nodes = nodesService.createNodesFromOverpassTurboResult(turboResult);
+        Collection<Node> nodes = nodeService.createNodesFromOverpassTurboResult(turboResult);
         //TODO filter nodes by availability
 
         return nodes;

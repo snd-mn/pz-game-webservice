@@ -48,6 +48,7 @@ public class PointDeSerializer extends StdDeserializer<Point> {
         coordinates[1].y = (Double) oy;
 
         CoordinateSequence coordinateSequence = new CoordinateArraySequence(coordinates,2);
+        //todo waeh??ß
         Point point = new Point(null,null);
         return null;
     }

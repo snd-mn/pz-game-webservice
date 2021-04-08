@@ -1,11 +1,13 @@
 package org.projectzion.game.persitence.entities;
 
+import lombok.Data;
 import org.projectzion.game.persitence.entities.conditions.Condition;
 import org.projectzion.game.utils.DisplayResourceType;
 
 import java.util.Set;
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name="node_types")
 public class NodeType {
