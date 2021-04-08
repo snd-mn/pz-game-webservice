@@ -12,6 +12,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+
 @Component
 public class SetupTiles implements ApplicationListener<ContextRefreshedEvent> {
     Logger logger = LoggerFactory.getLogger(SetupTiles.class);
@@ -38,7 +40,7 @@ public class SetupTiles implements ApplicationListener<ContextRefreshedEvent> {
         return keyValueService.read(KV_TILE_SETUP_WIDTH, Double.class) != null && keyValueService.read(KV_TILE_SETUP_HEIGHT, Double.class) != null;
     }
 
-    private void setSpatialConstants() throws JsonProcessingException {
+    private void setSpatialConstants() throws IOException {
         spatialConstantsService.setTileSizeX((Double) keyValueService.read(KV_TILE_SETUP_WIDTH, Double.class));
         spatialConstantsService.setTileSizeY((Double) keyValueService.read(KV_TILE_SETUP_HEIGHT, Double.class));
     }

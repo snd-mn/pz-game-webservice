@@ -12,5 +12,5 @@ import java.math.BigDecimal;
 public class ItemReward extends Reward{
     @ManyToOne
     Item item;
-    BigDecimal itemAmount;
+    double itemAmount;
 }

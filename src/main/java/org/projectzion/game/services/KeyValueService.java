@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Date;
 
 @Service
@@ -46,7 +47,7 @@ public class KeyValueService {
         return keyValueRepository.save(keyValue);
     }
 
-    public Object read(String key, Class clazz) throws JsonProcessingException {
+    public Object read(String key, Class clazz) throws IOException {
         Object redValue = null;
         KeyValue keyValue = keyValueRepository.findByKey(key);
         if(keyValue == null)

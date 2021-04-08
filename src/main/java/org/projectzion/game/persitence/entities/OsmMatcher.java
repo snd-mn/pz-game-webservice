@@ -17,7 +17,8 @@ public class OsmMatcher {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    private NodeCriteria osmNodeCriteria;
+//    @Convert
+    private NodeCriteria nodeCriteria;
 
     @OneToMany(mappedBy = "osmMatcher")
     Set<OsmMatcherNodeType> osmMatcherNodeTypes;

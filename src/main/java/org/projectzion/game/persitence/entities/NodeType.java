@@ -29,7 +29,7 @@ public class NodeType {
 
     private DisplayResourceType displayResourceType;
 
-    private Long cooldown;
+    private int cooldown;
 
     private Double minDistance;
 

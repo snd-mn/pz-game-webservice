@@ -53,10 +53,10 @@ public class NodeFactory {
 
     public boolean match(OsmMatcher osmMatcher, OverpassTurboElement element, OverpassTurboResult result)
     {
-        boolean sameType = osmMatcher.getOsmNodeCriteria().getOverpassTurboNodeType().getOsmName().equals(element.getType());
+        boolean sameType = osmMatcher.getNodeCriteria().getOverpassTurboNodeType().getOsmName().equals(element.getType());
 
         AtomicBoolean sameCriteria = new AtomicBoolean(true);
-        osmMatcher.getOsmNodeCriteria().getFilter().forEach((key,value) ->{
+        osmMatcher.getNodeCriteria().getFilter().forEach((key, value) ->{
             String valFound = element.getTags().get(key.filter);
             if(valFound != value.value)
             {
@@ -152,10 +152,10 @@ public class NodeFactory {
         return nodes;
     }
 
-    public Long getRespawnTime(){
+    public int getRespawnTime(){
         //PFUI BAH
         int r = random.nextInt(600);
-        return new Long(r);
+        return r;
     }
 
     public DisplayResourceType getNodeType(){

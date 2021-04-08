@@ -15,6 +15,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    //TODO localization
+    String name;
+
     boolean tradeAble = false;
 
     //TODO why did i added this?
