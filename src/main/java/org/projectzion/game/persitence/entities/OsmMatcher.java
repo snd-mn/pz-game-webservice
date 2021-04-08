@@ -1,10 +1,12 @@
 package org.projectzion.game.persitence.entities;
 
 import lombok.Data;
+import org.projectzion.game.services.overpass.turbo.NodeCriteria;
 import org.projectzion.game.utils.OverpassTurboNodeType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.Set;
 
 @Data
@@ -15,19 +17,11 @@ public class OsmMatcher {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    private NodeCriteria osmNodeCriteria;
+
     @OneToMany(mappedBy = "osmMatcher")
     Set<OsmMatcherNodeType> osmMatcherNodeTypes;
 
-    private BigDecimal minDistance;
 
-    private BigDecimal maxDistance;
-
-    private OverpassTurboNodeType map2OverpassTurboNodeType;
-
-    private Long minCooldown;
-
-    private Long maxCooldown;
-
-    private String map2osmTag;
 
 }

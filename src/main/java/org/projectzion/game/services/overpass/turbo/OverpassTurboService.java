@@ -68,8 +68,6 @@ public class OverpassTurboService {
         return preparedQuery;
     }
 
-
-
     private String prepareBbox(double south,double west,double north,double east){
         return BOUNDING_BOX
                 .replaceAll(BOUNDING_BOX_SOUTH, String.valueOf(south))
@@ -105,7 +103,7 @@ public class OverpassTurboService {
             if(critera.getFilter() != null)
             {
                 critera.getFilter().forEach((key, value) -> {
-                    crits.append("[").append(key).append("=\"").append(value).append("=\"").append("]");
+                    crits.append("[").append(key.filter).append("=\"").append(value.value).append("=\"").append("]");
                 });
                 crits.append("\n");
             }

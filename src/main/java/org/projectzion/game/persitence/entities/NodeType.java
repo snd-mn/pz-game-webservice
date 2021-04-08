@@ -28,7 +28,8 @@ public class NodeType {
     private DisplayResourceType displayResourceType;
 
     private Long cooldown;
-    //TODO maybe point / area, useable at all, collectable, something i dont know yet
 
+    private Double minDistance;
 
+    private Double maxDistance;
 }
