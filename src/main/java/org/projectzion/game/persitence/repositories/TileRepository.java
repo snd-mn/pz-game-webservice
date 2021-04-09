@@ -6,6 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TileRepository extends CrudRepository<Tile, String> {
     @Query("SELECT t FROM Tile t where t.x = :x and t.y = :y")

@@ -1,8 +1,11 @@
 package org.projectzion.game.services.overpass.turbo;
 
 import org.projectzion.game.configs.OverpassTurboConfig;
+import org.projectzion.game.controllers.TilesController;
 import org.projectzion.game.utils.Gps;
 import org.projectzion.game.tos.OverpassTurboResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +22,7 @@ import java.util.List;
 
 @Service
 public class OverpassTurboService {
+    Logger logger = LoggerFactory.getLogger(OverpassTurboService.class);
 
     @Autowired
     OverpassTurboConfig overpassTurboConfig;
@@ -85,7 +89,7 @@ public class OverpassTurboService {
             "out;";
 
     public static final String CRITERIA_PLACEHOLDER = "#CRITERIA_PLACEHOLDER#";
-    public static final String QUERY_HOLLOW = "[out:json];\n" +
+    public static final String QUERY_HOLLOW = "[out:json]\n" +
             BOUNDING_BOX_PLACEHOLDER + ";\n" +
             "(\n" +
             CRITERIA_PLACEHOLDER  + ";\n" +
@@ -103,12 +107,13 @@ public class OverpassTurboService {
             if(critera.getFilter() != null)
             {
                 critera.getFilter().forEach((key, value) -> {
-                    crits.append("[").append(key.filter).append("=\"").append(value.value).append("=\"").append("]");
+                    crits.append("[\"").append(key.filter).append("\"=\"").append(value.value).append("\"").append("]");
                 });
                 crits.append("\n");
             }
         });
         query = query.replaceAll(BOUNDING_BOX_PLACEHOLDER, bbox).replaceAll(CRITERIA_PLACEHOLDER, crits.toString());
+        logger.info(query);
         ret = executeQuery(query);
 
         return ret;

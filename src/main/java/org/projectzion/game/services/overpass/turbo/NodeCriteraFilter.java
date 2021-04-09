@@ -4,7 +4,7 @@ import java.util.Set;
 
 public enum NodeCriteraFilter {
 
-    AMENITY("AMENITY", Set.of(NodeCriteraFilterValue.POSTBOX)),
+    AMENITY("amenity", Set.of(NodeCriteraFilterValue.POSTBOX)),
     //TODO A fucking lot
     ;
     public String filter;

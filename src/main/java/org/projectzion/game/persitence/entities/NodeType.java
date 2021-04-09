@@ -31,7 +31,5 @@ public class NodeType {
 
     private int cooldown;
 
-    private Double minDistance;
 
-    private Double maxDistance;
 }

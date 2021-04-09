@@ -53,10 +53,10 @@ public class NodeFactory {
 
     public boolean match(OsmMatcher osmMatcher, OverpassTurboElement element, OverpassTurboResult result)
     {
-        boolean sameType = osmMatcher.getNodeCriteria().getOverpassTurboNodeType().getOsmName().equals(element.getType());
+        boolean sameType = osmMatcher.getOverpassTurboNodeType().getOsmName().equals(element.getType());
 
         AtomicBoolean sameCriteria = new AtomicBoolean(true);
-        osmMatcher.getNodeCriteria().getFilter().forEach((key, value) ->{
+        osmMatcher.getFilter().forEach((key, value) ->{
             String valFound = element.getTags().get(key.filter);
             if(valFound != value.value)
             {
@@ -89,14 +89,13 @@ public class NodeFactory {
     public void createNodesForTile(Tile tile) throws Exception{
         List<NodeCriteria> criteriaNodeTypes = new ArrayList<>();
 
-        NodeCriteria crit0 = new NodeCriteria();
-        crit0.setOverpassTurboNodeType(OverpassTurboNodeType.NODE);
-
-        Map<NodeCriteraFilter, NodeCriteraFilterValue> filters = new HashMap<>();
-        filters.put(NodeCriteraFilter.AMENITY,NodeCriteraFilterValue.POSTBOX);
-        crit0.setFilter(filters);
-
-        criteriaNodeTypes.add(crit0);
+        osmMatcherService.getAllOsmMatchers().forEach(matcher ->{
+            //TODO move this to helper method in OsmMatcher
+            NodeCriteria crit0 = new NodeCriteria();
+            crit0.setOverpassTurboNodeType(OverpassTurboNodeType.NODE);
+            crit0.setFilter(matcher.getFilter());
+            criteriaNodeTypes.add(crit0);
+        });
 
         OverpassTurboResult overpassTurboResult = overpassTurboService.getNodesFromBox(tile.getBboxEast(),tile.getBboxWest(),tile.getBboxSouth(),tile.getBboxNorth(), criteriaNodeTypes);
         //todo mapping magic
@@ -117,7 +116,10 @@ public class NodeFactory {
             nodes.get().add(node);
         });
 
-
+        if(tile.getNodes() == null)
+        {
+            tile.setNodes(new HashSet<>());
+        }
         tile.getNodes().addAll(nodes.get());
         tile.setLastFactoryRun(new Date());
         tileRepository.save(tile);

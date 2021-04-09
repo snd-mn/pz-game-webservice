@@ -87,12 +87,10 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
 
                 //OsmMatcher
                 OsmMatcher osmMatcher = new OsmMatcher();
-                NodeCriteria nodeCriteria = new NodeCriteria();
-                nodeCriteria.setOverpassTurboNodeType(OverpassTurboNodeType.NODE);
+                osmMatcher.setOverpassTurboNodeType(OverpassTurboNodeType.NODE);
                 Map<NodeCriteraFilter, NodeCriteraFilterValue> filter = new HashMap<>();
                 filter.put(NodeCriteraFilter.AMENITY, NodeCriteraFilterValue.POSTBOX);
-                nodeCriteria.setFilter(filter);
-                osmMatcher.setNodeCriteria(nodeCriteria);
+                osmMatcher.setFilter(filter);
 
                 //OsmMatcherNodeType
                 OsmMatcherNodeType osmMatcherNodeType = new OsmMatcherNodeType();

@@ -1,6 +1,11 @@
 package org.projectzion.game.persitence.entities;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.projectzion.game.persitence.attributeconverters.NodeCriteriaAttributeConverter;
+import org.projectzion.game.services.overpass.turbo.NodeCriteraFilter;
+import org.projectzion.game.services.overpass.turbo.NodeCriteraFilterValue;
 import org.projectzion.game.services.overpass.turbo.NodeCriteria;
 import org.projectzion.game.utils.OverpassTurboNodeType;
 
@@ -15,14 +20,24 @@ import java.util.Set;
 public class OsmMatcher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
-//    @Convert
-    private NodeCriteria nodeCriteria;
+    @Enumerated(EnumType.STRING)
+    private OverpassTurboNodeType overpassTurboNodeType;
+
+    @ElementCollection
+    @CollectionTable(name = "osm_matcher_filters",
+            joinColumns = { @JoinColumn(name = "osm_matcher_id") })
+    @MapKeyEnumerated(EnumType.STRING)
+    @MapKeyColumn(name = "filter_key")
+    @Column(name = "filter_value")
+    private Map<NodeCriteraFilter, NodeCriteraFilterValue> filter;
 
     @OneToMany(mappedBy = "osmMatcher")
-    Set<OsmMatcherNodeType> osmMatcherNodeTypes;
+    private Set<OsmMatcherNodeType> osmMatcherNodeTypes;
 
+    private Double minDistance;
 
+    private Double maxDistance;
 
 }

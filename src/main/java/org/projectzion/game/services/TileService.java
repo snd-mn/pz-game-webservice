@@ -27,8 +27,8 @@ public class TileService {
     public int[] getTileCoordinatesFromGps(double x, double y){
         //move to the positive side (of life :D)
         //reuse, yeah shitty, but will be callet 3000x a sec
-        x = x+180;
-        y = y+90;
+//        x = x+180;
+//        y = y+90;
         int qx = (int)( x / spatialConstantsService.getTileSizeX());
         int qy = (int)( y / spatialConstantsService.getTileSizeY());
         return new int[]{qx,qy};
