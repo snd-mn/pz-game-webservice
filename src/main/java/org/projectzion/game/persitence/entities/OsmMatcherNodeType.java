@@ -1,10 +1,13 @@
 package org.projectzion.game.persitence.entities;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="osm_matcher_node_type")
 public class OsmMatcherNodeType {

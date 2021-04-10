@@ -44,8 +44,8 @@ public class TileService {
         tile.setX(xy[0]);
         tile.setY(xy[1]);
 
-        tile.setBboxEast(xy[0]*spatialConstantsService.getTileSizeX());
-        tile.setBboxWest(xy[0]*spatialConstantsService.getTileSizeX() + spatialConstantsService.getTileSizeX());
+        tile.setBboxEast(xy[0]*spatialConstantsService.getTileSizeX() + spatialConstantsService.getTileSizeX());
+        tile.setBboxWest(xy[0]*spatialConstantsService.getTileSizeX());
         tile.setBboxSouth(xy[1]*spatialConstantsService.getTileSizeY());
         tile.setBboxNorth(xy[1]*spatialConstantsService.getTileSizeY() + spatialConstantsService.getTileSizeY());
 

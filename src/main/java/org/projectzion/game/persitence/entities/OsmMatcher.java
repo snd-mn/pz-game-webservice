@@ -14,7 +14,8 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="osm_matcher")
 public class OsmMatcher {

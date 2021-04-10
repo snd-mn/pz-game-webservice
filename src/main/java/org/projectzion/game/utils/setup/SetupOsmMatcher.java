@@ -2,12 +2,10 @@ package org.projectzion.game.utils.setup;
 
 import org.projectzion.game.persitence.entities.*;
 import org.projectzion.game.persitence.entities.rewards.ItemReward;
-import org.projectzion.game.persitence.entities.rewards.Reward;
 import org.projectzion.game.persitence.repositories.*;
 import org.projectzion.game.services.KeyValueService;
 import org.projectzion.game.services.overpass.turbo.NodeCriteraFilter;
 import org.projectzion.game.services.overpass.turbo.NodeCriteraFilterValue;
-import org.projectzion.game.services.overpass.turbo.NodeCriteria;
 import org.projectzion.game.utils.DisplayResourceType;
 import org.projectzion.game.utils.OverpassTurboNodeType;
 import org.slf4j.Logger;
@@ -89,7 +87,7 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
                 OsmMatcher osmMatcher = new OsmMatcher();
                 osmMatcher.setOverpassTurboNodeType(OverpassTurboNodeType.NODE);
                 Map<NodeCriteraFilter, NodeCriteraFilterValue> filter = new HashMap<>();
-                filter.put(NodeCriteraFilter.AMENITY, NodeCriteraFilterValue.POSTBOX);
+                filter.put(NodeCriteraFilter.AMENITY, NodeCriteraFilterValue.POST_BOX);
                 osmMatcher.setFilter(filter);
 
                 //OsmMatcherNodeType

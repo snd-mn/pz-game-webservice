@@ -1,6 +1,8 @@
 package org.projectzion.game.persitence.entities.misc;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.catalina.core.ApplicationContext;
 import org.projectzion.game.persitence.entities.bases.LocalizedTimeStampsBaseEntity;
 import org.projectzion.game.persitence.entities.security.User;
@@ -8,7 +10,8 @@ import org.projectzion.game.persitence.entities.security.User;
 import javax.persistence.*;
 
 //TODO extend with Timestamps base entity mopped
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "key_values")
 public class KeyValue {

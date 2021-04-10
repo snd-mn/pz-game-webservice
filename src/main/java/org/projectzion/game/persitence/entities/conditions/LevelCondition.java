@@ -2,8 +2,11 @@ package org.projectzion.game.persitence.entities.conditions;
 
 import javax.persistence.Entity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class LevelCondition extends Condition {
      int level;

@@ -1,5 +1,7 @@
 package org.projectzion.game.persitence.entities.security;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.projectzion.game.persitence.entities.Character;
 import org.projectzion.game.persitence.entities.CollectedNodes;
 
@@ -8,7 +10,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {

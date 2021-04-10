@@ -25,9 +25,9 @@ public class PlayerService {
     @Autowired
     TileService tileService;
 
-    //TODO RENAME
+    //TODO move to tile service
     @SneakyThrows
-    public Set<Tile> getTilesForCharacter(Character character, Gps gps){
+    public Set<Tile> getOrCreateNearTiles(Gps gps){
         Set<Tile> tiles = new HashSet<>();
         int[] center = tileService.getTileCoordinatesFromGps(gps.getLon(), gps.getLat());
         //0 1 2

@@ -3,9 +3,12 @@ package org.projectzion.game.persitence.entities;
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.projectzion.game.persitence.entities.rewards.Reward;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="node_types_rewards")
 public class NodeTypeReward {

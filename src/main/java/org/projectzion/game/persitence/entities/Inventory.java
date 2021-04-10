@@ -3,10 +3,13 @@ package org.projectzion.game.persitence.entities;
 import java.math.BigDecimal;
 import javax.persistence.*;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.projectzion.game.persitence.entities.security.User;
 import lombok.Data;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="inventories")
 public class Inventory {

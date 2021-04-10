@@ -4,9 +4,7 @@ import org.projectzion.game.persitence.entities.Character;
 import org.projectzion.game.persitence.entities.Tile;
 import org.projectzion.game.persitence.repositories.CharacterRepository;
 import org.projectzion.game.scoped.request.RequestScoped;
-import org.projectzion.game.services.NodeService;
 import org.projectzion.game.services.PlayerService;
-import org.projectzion.game.services.SpatialConstantsService;
 import org.projectzion.game.tos.TilesRequest;
 import org.projectzion.game.tos.TilesResponse;
 import org.projectzion.game.tos.TileTo;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +40,7 @@ public class TilesController {
     Tile2TileToConverter tile2TileToConverter;
 
     //TODO requesting user
+    @Transactional
     @GetMapping("tiles") //51.50887814714403, 7.464912957132908
     public TilesResponse getTilesFromGps(@RequestBody TilesRequest tilesRequest) throws Exception {
         TilesResponse tilesResponse = new TilesResponse();
@@ -51,7 +51,7 @@ public class TilesController {
         Character character = new Character();
 
         //TODO create a query for this!
-        Set<Tile> tiles = playerService.getTilesForCharacter(character, tilesRequest.getGps());
+        Set<Tile> tiles = playerService.getOrCreateNearTiles(tilesRequest.getGps());
         List<TileTo> tileTos = new ArrayList<>();
         tiles.forEach(tile -> {
             tileTos.add(tile2TileToConverter.convert(tile));

@@ -6,8 +6,6 @@ import org.projectzion.game.persitence.entities.*;
 import org.projectzion.game.persitence.repositories.TileRepository;
 import org.projectzion.game.services.NodeService;
 import org.projectzion.game.services.OsmMatcherService;
-import org.projectzion.game.services.overpass.turbo.NodeCriteraFilter;
-import org.projectzion.game.services.overpass.turbo.NodeCriteraFilterValue;
 import org.projectzion.game.services.overpass.turbo.NodeCriteria;
 import org.projectzion.game.services.overpass.turbo.OverpassTurboService;
 import org.projectzion.game.tos.OverpassTurboElement;
@@ -15,6 +13,8 @@ import org.projectzion.game.tos.OverpassTurboResult;
 import org.projectzion.game.utils.DisplayResourceType;
 import org.projectzion.game.utils.OverpassTurboNodeType;
 import org.projectzion.game.utils.SpatialUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
@@ -25,10 +25,11 @@ import javax.transaction.Transactional;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.StreamSupport;
 
 @Service
 public class NodeFactory {
+    Logger logger = LoggerFactory.getLogger(NodeFactory.class);
+
     //TODO RANDOM STREAM
     private Random random = new Random();
 
@@ -58,7 +59,7 @@ public class NodeFactory {
         AtomicBoolean sameCriteria = new AtomicBoolean(true);
         osmMatcher.getFilter().forEach((key, value) ->{
             String valFound = element.getTags().get(key.filter);
-            if(valFound != value.value)
+            if(!valFound.equals(value.value))
             {
                 sameCriteria.set(false);
                 //TODO how to break here?
@@ -72,7 +73,7 @@ public class NodeFactory {
 
     public NodeType getNodeTypeFromMatcher(OsmMatcher matcher){
         NodeType nodeType = null;
-        AtomicReference<OsmMatcherNodeType> osmMatcherNodeType = null;
+        AtomicReference<OsmMatcherNodeType> osmMatcherNodeType = new AtomicReference<>();
         int highestRoll = 0;
         matcher.getOsmMatcherNodeTypes().forEach(mapping ->{
             //TODO random stuff
@@ -90,7 +91,7 @@ public class NodeFactory {
         List<NodeCriteria> criteriaNodeTypes = new ArrayList<>();
 
         osmMatcherService.getAllOsmMatchers().forEach(matcher ->{
-            //TODO move this to helper method in OsmMatcher
+            //TODO create a table for node critera replace that Map for osmMatcher
             NodeCriteria crit0 = new NodeCriteria();
             crit0.setOverpassTurboNodeType(OverpassTurboNodeType.NODE);
             crit0.setFilter(matcher.getFilter());
@@ -103,18 +104,23 @@ public class NodeFactory {
         AtomicReference<List<Node>> nodes = new AtomicReference<>();
         nodes.set(new ArrayList<>());
 
-        overpassTurboResult.getElements().forEach(element ->{
+        for (OverpassTurboElement element : overpassTurboResult.getElements()) {
             AtomicReference<NodeType> nodeType = new AtomicReference<>();
-            StreamSupport.stream(osmMatchers.spliterator(), false).takeWhile(matcher -> null == nodeType.get()).forEach(matcher -> {
-                if(match(matcher,element,overpassTurboResult)){
-                    nodeType.set(getNodeTypeFromMatcher(matcher));
+            for (OsmMatcher osmMatcher : osmMatchers) {
+                if(match(osmMatcher,element,overpassTurboResult)){
+                    nodeType.set(getNodeTypeFromMatcher(osmMatcher));
+                    break;
                 }
-            });
-            //TODO create node from nodetype
-            Node node = createNode(element, nodeType.get(), tile);
-            nodeService.saveNodes(nodes.get());
-            nodes.get().add(node);
-        });
+            }
+            if(nodeType.get()!= null) {
+                Node node = buildNode(element, nodeType.get(), tile);
+                nodes.get().add(node);
+            }else{
+                logger.info("no osmMatcher for OverpassTurboElement, may check your configuration: " + element.toString());
+            }
+        }
+        //save also sets the id
+        nodeService.saveNodes(nodes.get());
 
         if(tile.getNodes() == null)
         {
@@ -125,13 +131,12 @@ public class NodeFactory {
         tileRepository.save(tile);
     }
 
-    private Node createNode(OverpassTurboElement element, NodeType nodeType, Tile tile) {
+    private Node buildNode(OverpassTurboElement element, NodeType nodeType, Tile tile) {
         Node node = new Node();
 
         //TODO no BigDecimal plz
         Coordinate[] coordinates = new Coordinate[1];
-        coordinates[0].x=element.getLon().doubleValue();
-        coordinates[0].y=element.getLat().doubleValue();
+        coordinates[0] = new Coordinate(element.getLon(),element.getLat());
         Double cordinateSequence = new Double(coordinates,2);
         Point point = new Point(cordinateSequence,getGeometryFactory());
 

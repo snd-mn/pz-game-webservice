@@ -1,7 +1,7 @@
 package org.projectzion.game.services.overpass.turbo;
 
 public enum NodeCriteraFilterValue {
-    POSTBOX("postbox"),
+    POST_BOX("post_box"),
     BRIDGE("bridge");
     //TODO A fucking lot
     public String value;

@@ -3,11 +3,14 @@ package org.projectzion.game.persitence.entities;
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.projectzion.game.persitence.entities.conditions.ItemCondition;
 
 import java.util.Collection;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="items")
 public class Item {

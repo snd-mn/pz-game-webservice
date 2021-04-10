@@ -21,6 +21,8 @@ public class Tile2TileToConverter implements Converter<Tile, TileTo> {
     @Override
     public TileTo convert(Tile tile) {
         TileTo tileTo = new TileTo();
+        tileTo.setX(tile.getX());
+        tileTo.setY(tile.getY());
         List<NodeTo> nodeTos = new ArrayList<>();
         tile.getNodes().forEach(node ->{
             nodeTos.add(node2NodeToConverter.convert(node));

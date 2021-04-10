@@ -1,9 +1,14 @@
 package org.projectzion.game.persitence.entities.security;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Collection;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name="privileges")
 public class Privilege {

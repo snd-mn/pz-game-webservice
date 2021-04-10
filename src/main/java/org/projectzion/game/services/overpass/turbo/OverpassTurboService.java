@@ -113,7 +113,6 @@ public class OverpassTurboService {
             }
         });
         query = query.replaceAll(BOUNDING_BOX_PLACEHOLDER, bbox).replaceAll(CRITERIA_PLACEHOLDER, crits.toString());
-        logger.info(query);
         ret = executeQuery(query);
 
         return ret;
@@ -126,10 +125,14 @@ public class OverpassTurboService {
 
         MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
         map.add("data", plainTextQuery);
-
+        logger.info(plainTextQuery);
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<OverpassTurboResult> response = restTemplate.postForEntity( overpassTurboConfig.getInterpreterUrl(), request , OverpassTurboResult.class );
+        //TODO wech
+        ResponseEntity<String> strResponse = restTemplate.postForEntity( overpassTurboConfig.getInterpreterUrl(), request , String.class );
+
+        logger.error(strResponse.getBody());
         return response.getBody();
     }
 
