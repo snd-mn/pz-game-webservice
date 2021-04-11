@@ -58,7 +58,6 @@ public class TilesController {
         });
 
         tilesResponse.setTileTos(tileTos);
-        logger.error("möööööp");
         return tilesResponse;
     }
 }
