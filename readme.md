@@ -16,17 +16,13 @@ in case you wanna build it your own, you can use this repo: https://github.com/o
 this component is just the backend.
 its configurable so you can define your own which game-nodes are created from overpass-nodes.
 for further info, take a look into these Entities:<br />
-<code>
-src/main/java/org/projectzion/game/persitence/entities/OsmMatcher.java<br />
+<code>src/main/java/org/projectzion/game/persitence/entities/OsmMatcher.java<br />
 src/main/java/org/projectzion/game/persitence/entities/OsmMatcherNodeType.java<br />
 src/main/java/org/projectzion/game/persitence/entities/NodeType.java<br />
 src/main/java/org/projectzion/game/persitence/entities/NodeTypeReward.java<br />
-src/main/java/org/projectzion/game/persitence/entities/rewards/Reward.java<br />
-</code>
+src/main/java/org/projectzion/game/persitence/entities/rewards/Reward.java<br /></code>
 
 <h2>Roadmap</h2>
-1. Finish the current open todos (authentication, user-management, sessions)
-
-2. Flyway-Repo for initial configuration
-
-3. Simple UE4 Game Client
+Finish the current open todos (authentication, user-management, sessions)
+Flyway-Repo for initial configuration
+Sample Game Client
