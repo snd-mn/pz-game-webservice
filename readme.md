@@ -23,8 +23,8 @@ for further info, take a look into these Entities:<br />
 `src/main/java/org/projectzion/game/persitence/entities/rewards/Reward.java`<br />
 
 <h2>Roadmap</h2>
-1) Finish the current open todos (authentication, user-management, sessions)
+1. Finish the current open todos (authentication, user-management, sessions)
 
-2) Flyway-Repo for initial configuration
+2. Flyway-Repo for initial configuration
 
-3) Simple UE4 Game Client
+3. Simple UE4 Game Client
