@@ -7,7 +7,7 @@ It generates game-related-data from open-street-map-services (Overpass-Turbo).<b
 <h2>Prerequisites</h2>
 You need to specify a Overpass-Turbo-Service for this <br />
 the url for the OTS can be definded in the application.properties<br />
-`pz.overpass.turbo.interpreterUrl=http://localhost/api/interpreter`<br />
+<pre><code>pz.overpass.turbo.interpreterUrl=http://localhost/api/interpreter<code/><pre/>
 best case, you host it yourself, <br />
 you can find a docker for hosting here https://github.com/officer-merge/docker-overpass-api <br />
 in case you wanna build it your own, you can use this repo: https://github.com/officer-merge/Overpass-API <br />
