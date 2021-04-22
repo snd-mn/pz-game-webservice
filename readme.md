@@ -23,6 +23,6 @@ src/main/java/org/projectzion/game/persitence/entities/NodeTypeReward.java<br />
 src/main/java/org/projectzion/game/persitence/entities/rewards/Reward.java<br /></code>
 
 <h2>Roadmap</h2>
-Finish the current open todos (authentication, user-management, sessions)
-Flyway-Repo for initial configuration
-Sample Game Client
+Finish the current open todos (authentication, user-management, sessions)<br />
+Flyway-Repo for initial configuration<br />
+Sample Game Client<br />
