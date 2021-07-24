@@ -25,6 +25,10 @@ public class NodeType {
     Set<NodeTypeReward> nodeTypeRewards;
 
     @ManyToMany
+    @JoinTable(
+            name = "node_type_condition",
+            joinColumns = @JoinColumn(name = "node_type_id"),
+            inverseJoinColumns = @JoinColumn(name = "condition_id"))
     Set<Condition> conditions;
 
     @OneToMany(mappedBy = "nodeType")

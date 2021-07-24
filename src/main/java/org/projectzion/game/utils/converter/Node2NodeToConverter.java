@@ -27,7 +27,7 @@ public class Node2NodeToConverter implements Converter<Node, NodeTo> {
         nodeTo.setDisplayType((byte) node.getNodeType().getDisplayResourceType().ordinal());
         nodeTo.setLon(node.getGps().getY());
         nodeTo.setLat(node.getGps().getX());
-        nodeTo.setNextRespawnFromNow(0);//TODO CollectedNodes
+        nodeTo.setNextRespawn(0);//TODO CollectedNodes
         nodeTo.setCooldown(node.getNodeType().getCooldown());
 
         HashMap<Long, Double> map = new HashMap<>();

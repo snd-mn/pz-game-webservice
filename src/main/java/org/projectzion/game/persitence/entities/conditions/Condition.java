@@ -18,6 +18,6 @@ public class Condition {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "conditions")
     Set<NodeType> nodeTypes;
 }
