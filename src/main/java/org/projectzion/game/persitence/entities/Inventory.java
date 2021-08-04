@@ -5,8 +5,6 @@ import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.projectzion.game.persitence.entities.security.User;
-import lombok.Data;
 
 @Getter
 @Setter
@@ -16,10 +14,6 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "character_id")
-    Character character;
 
     @ManyToOne
     @JoinColumn(name = "item_id")

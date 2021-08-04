@@ -2,11 +2,8 @@ package org.projectzion.game.persitence.entities.security;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.projectzion.game.persitence.entities.Character;
-import org.projectzion.game.persitence.entities.CollectedNodes;
 
 import java.util.Collection;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -33,9 +30,6 @@ public class User {
     private boolean enabled;
 
     private boolean isUsing2FA;
-
-    @OneToMany(mappedBy = "user")
-    private Set<Character> character;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))

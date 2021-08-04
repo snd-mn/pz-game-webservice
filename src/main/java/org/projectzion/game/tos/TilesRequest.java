@@ -5,6 +5,6 @@ import org.projectzion.game.utils.Gps;
 
 @Data
 public class TilesRequest {
-    long characterId;
+    Long userId;
     Gps gps;
 }

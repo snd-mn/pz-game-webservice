@@ -2,12 +2,9 @@ package org.projectzion.game.persitence.entities;
 
 import javax.persistence.*;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.projectzion.game.persitence.entities.conditions.ItemCondition;
 
-import java.util.Collection;
 
 @Getter
 @Setter
@@ -25,9 +22,6 @@ public class Item {
 
     //TODO why did i added this?
     boolean useAble = false;
-
-    @OneToMany(mappedBy = "item")
-    Collection<ItemCondition> itemConditions;
 
     //EFFECTS e.g. increase spawntime blub | increase gather amount blub | notifications | Achievment
 }

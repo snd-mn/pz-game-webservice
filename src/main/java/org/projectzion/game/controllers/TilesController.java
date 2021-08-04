@@ -1,8 +1,6 @@
 package org.projectzion.game.controllers;
 
-import org.projectzion.game.persitence.entities.Character;
 import org.projectzion.game.persitence.entities.Tile;
-import org.projectzion.game.persitence.repositories.CharacterRepository;
 import org.projectzion.game.scoped.request.RequestScoped;
 import org.projectzion.game.services.PlayerService;
 import org.projectzion.game.tos.TilesRequest;
@@ -32,10 +30,6 @@ public class TilesController {
     @Autowired
     PlayerService playerService;
 
-    //TODO service
-    @Autowired
-    CharacterRepository characterRepository;
-
     @Autowired
     Tile2TileToConverter tile2TileToConverter;
 
@@ -47,8 +41,6 @@ public class TilesController {
         //TODO check priviliges here
         requestScoped.currentUserPrincipal();
         //TODO hmm, create some
-//        Character character = characterRepository.findById(tilesRequest.getCharacterId()).get();
-        Character character = new Character();
 
         //TODO create a query for this!
         Set<Tile> tiles = playerService.getOrCreateNearTiles(tilesRequest.getGps());

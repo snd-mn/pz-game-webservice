@@ -8,10 +8,6 @@ import java.util.Map;
 public class NodeTo {
     private Long id;
     double lon, lat;
-    long nextRespawn;
-    int cooldown;
-    Map<Long,Double> rewardIdToAmount;
-    byte displayType;
-    byte conditionFlags;
-
+    long respawn;
+    private Long nodeType;
 }

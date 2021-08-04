@@ -23,18 +23,11 @@ public class Node2NodeToConverter implements Converter<Node, NodeTo> {
     public NodeTo convert(Node node) {
         NodeTo nodeTo = new NodeTo();
         nodeTo.setId(node.getId());
-        nodeTo.setConditionFlags((byte) 0);
-        nodeTo.setDisplayType((byte) node.getNodeType().getDisplayResourceType().ordinal());
+        nodeTo.setNodeType(node.getNodeType().getId());
         nodeTo.setLon(node.getGps().getY());
         nodeTo.setLat(node.getGps().getX());
-        nodeTo.setNextRespawn(0);//TODO CollectedNodes
-        nodeTo.setCooldown(node.getNodeType().getCooldown());
-
-        HashMap<Long, Double> map = new HashMap<>();
-        node.getNodeType().getNodeTypeRewards().forEach(nodeTypeReward -> {
-            map.put(nodeTypeReward.getReward().getId(),nodeTypeReward.getReward().getAmount());
-        });
-        nodeTo.setRewardIdToAmount(map);
+        //TODO it needs to be clear (is there a collectedNode?)
+        nodeTo.setRespawn(0);
 
         return nodeTo;
     }

@@ -2,7 +2,6 @@ package org.projectzion.game.services;
 
 import lombok.SneakyThrows;
 import org.projectzion.game.factories.NodeFactory;
-import org.projectzion.game.persitence.entities.Character;
 import org.projectzion.game.persitence.entities.Tile;
 import org.projectzion.game.utils.Gps;
 import org.springframework.beans.factory.annotation.Autowired;

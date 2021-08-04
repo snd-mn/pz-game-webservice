@@ -1,7 +1,6 @@
 package org.projectzion.game.utils.setup;
 
 import org.projectzion.game.persitence.entities.*;
-import org.projectzion.game.persitence.entities.rewards.ItemReward;
 import org.projectzion.game.persitence.repositories.*;
 import org.projectzion.game.services.KeyValueService;
 import org.projectzion.game.services.overpass.turbo.NodeCriteraFilter;
@@ -37,14 +36,8 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
     @Autowired
     NodeTypeRepository nodeTypeRepository;
 
-    @Autowired
-    ItemRepository itemRepository;
-
-    @Autowired
-    RewardRepository rewardRepository;
-
     @Transactional
-    private void saveSetupDone() throws Exception {
+    protected void saveSetupDone() throws Exception {
         keyValueService.save(OSM_MATCHER_SETUP, OSM_MATCHER_SETUP);
     }
 
@@ -73,15 +66,6 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
                 item.setUseAble(true);
                 item.setName("Friedensblume");
 
-                //Reward
-                ItemReward itemReward = new ItemReward();
-                itemReward.setItem(item);
-                itemReward.setAmount(3);
-
-                //NodeTypeReward
-                NodeTypeReward nodeTypeReward = new NodeTypeReward();
-                nodeTypeReward.setNodeType(nodeType);
-                nodeTypeReward.setReward(itemReward);
 
                 //OsmMatcher
                 OsmMatcher osmMatcher = new OsmMatcher();
@@ -97,8 +81,6 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
                 osmMatcherNodeType.setChance(100);
 
                 //save
-                itemRepository.save(item);
-                rewardRepository.save(itemReward);
                 nodeTypeRepository.save(nodeType);
                 osmMatcherRepository.save(osmMatcher);
                 osmMatcherNodeTypeRepository.save(osmMatcherNodeType);
