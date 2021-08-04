@@ -7,7 +7,7 @@ SET foreign_key_checks = 0;
 DROP TABLE characters;
 DROP TABLE collected_nodes;
 DROP TABLE conditions;
-DROP TABLE conditions_node_types;
+#DROP TABLE conditions_node_types;
 DROP TABLE hibernate_sequence;
 DROP TABLE inventories;
 DROP TABLE items;
@@ -30,3 +30,7 @@ DROP TABLE users;
 DROP TABLE users_roles;
 
 SET foreign_key_checks = 1;
+
+
+
+

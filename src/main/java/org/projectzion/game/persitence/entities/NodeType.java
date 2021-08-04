@@ -18,7 +18,7 @@ public class NodeType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy="nodeType")
     Set<Node> nodes;
 
     @OneToMany(mappedBy = "nodeType")

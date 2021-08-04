@@ -11,7 +11,6 @@ public enum DisplayResourceType {
     MUSHROOM(4),
     TRANSFER_STATION(5),
     CHEST(5),
-
     ;
 
     private final int value;
