@@ -1,11 +1,13 @@
 package org.projectzion.game.controllers;
 
 import org.projectzion.game.persitence.entities.Tile;
+import org.projectzion.game.persitence.repositories.CollectedNodesRepository;
 import org.projectzion.game.scoped.request.RequestScoped;
 import org.projectzion.game.services.PlayerService;
 import org.projectzion.game.tos.TilesRequest;
 import org.projectzion.game.tos.TilesResponse;
 import org.projectzion.game.tos.TileTo;
+import org.projectzion.game.utils.UserPrincipal;
 import org.projectzion.game.utils.converter.Tile2TileToConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +24,7 @@ import java.util.Set;
 
 @RestController
 public class TilesController {
-    Logger logger = LoggerFactory.getLogger(TilesController.class);
+    Logger log = LoggerFactory.getLogger(TilesController.class);
 
     @Autowired
     RequestScoped requestScoped;
@@ -31,20 +33,20 @@ public class TilesController {
     PlayerService playerService;
 
     @Autowired
+    CollectedNodesRepository collectedNodesRepository;
+
+    @Autowired
     Tile2TileToConverter tile2TileToConverter;
 
-    //TODO requesting user
     @Transactional
-    @GetMapping("tiles") //51.50887814714403, 7.464912957132908
+    @GetMapping("tiles")
     public TilesResponse getTilesFromGps(@RequestBody TilesRequest tilesRequest) throws Exception {
         TilesResponse tilesResponse = new TilesResponse();
-        //TODO check priviliges here
-        requestScoped.currentUserPrincipal();
-        //TODO hmm, create some
+        UserPrincipal userPrincipal = requestScoped.currentUserPrincipal(); //TODO this is fucking long... shortcut!
 
-        //TODO create a query for this!
-        Set<Tile> tiles = playerService.getOrCreateNearTiles(tilesRequest.getGps());
         List<TileTo> tileTos = new ArrayList<>();
+        Set<Tile> tiles = playerService.getOrCreateNearTiles(tilesRequest.getGps());
+        tile2TileToConverter.setCollectedNodes(collectedNodesRepository.findCollectedNodesByUser(userPrincipal.getUser().getId()));
         tiles.forEach(tile -> {
             tileTos.add(tile2TileToConverter.convert(tile));
         });

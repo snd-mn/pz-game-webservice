@@ -27,7 +27,7 @@ public class Node2NodeToConverter implements Converter<Node, NodeTo> {
         nodeTo.setLon(node.getGps().getY());
         nodeTo.setLat(node.getGps().getX());
         //TODO it needs to be clear (is there a collectedNode?)
-        nodeTo.setRespawn(0);
+        nodeTo.setNextAvailability(0L);
 
         return nodeTo;
     }

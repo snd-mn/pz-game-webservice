@@ -2,8 +2,10 @@ package org.projectzion.game.persitence.entities.security;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.projectzion.game.persitence.entities.CollectedNode;
 
 import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -34,6 +36,9 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private Set<CollectedNode> collectedNodes;
 
     public User() {
         super();

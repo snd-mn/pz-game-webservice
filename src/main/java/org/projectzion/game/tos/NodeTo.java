@@ -8,6 +8,6 @@ import java.util.Map;
 public class NodeTo {
     private Long id;
     double lon, lat;
-    long respawn;
+    long nextAvailability;
     private Long nodeType;
 }

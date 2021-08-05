@@ -3,9 +3,7 @@ package org.projectzion.game.persitence.entities;
 import lombok.Getter;
 import lombok.Setter;
 import org.projectzion.game.utils.json.serializer.PointSerializer;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.Data;
 import com.vividsolutions.jts.geom.Point;
 
 import javax.persistence.*;
@@ -32,7 +30,7 @@ public class Node {
     private Point gps;
 
     @OneToMany(mappedBy = "node")
-    private Set<CollectedNodes> collectedNodes;
+    private Set<CollectedNode> collectedNodes;
 
     @ManyToOne
     private Tile tile;

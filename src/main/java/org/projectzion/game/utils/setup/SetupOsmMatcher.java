@@ -46,7 +46,7 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
-//    @Transactional
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         try {
             if (isSetupDone()) {
