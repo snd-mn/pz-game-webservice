@@ -46,7 +46,7 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         try {
             if (isSetupDone()) {
@@ -57,15 +57,10 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
             {
                 //NodeType
                 NodeType nodeType = new NodeType();
+                nodeType.setId(1L);
                 nodeType.setCooldown(60);
                 nodeType.setDisplayResourceType(DisplayResourceType.CHEST);
-
-                //Item
-                Item item = new Item();
-                item.setTradeAble(false);
-                item.setUseAble(true);
-                item.setName("Friedensblume");
-
+                nodeTypeRepository.save(nodeType);
 
                 //OsmMatcher
                 OsmMatcher osmMatcher = new OsmMatcher();
@@ -73,16 +68,13 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
                 Map<NodeCriteraFilter, NodeCriteraFilterValue> filter = new HashMap<>();
                 filter.put(NodeCriteraFilter.AMENITY, NodeCriteraFilterValue.POST_BOX);
                 osmMatcher.setFilter(filter);
+                osmMatcherRepository.save(osmMatcher);
 
                 //OsmMatcherNodeType
                 OsmMatcherNodeType osmMatcherNodeType = new OsmMatcherNodeType();
                 osmMatcherNodeType.setNodeType(nodeType);
                 osmMatcherNodeType.setOsmMatcher(osmMatcher);
                 osmMatcherNodeType.setChance(100);
-
-                //save
-                nodeTypeRepository.save(nodeType);
-                osmMatcherRepository.save(osmMatcher);
                 osmMatcherNodeTypeRepository.save(osmMatcherNodeType);
             }
             saveSetupDone();

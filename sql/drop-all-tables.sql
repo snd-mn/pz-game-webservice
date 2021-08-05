@@ -6,8 +6,6 @@ SET foreign_key_checks = 0;
 
 DROP TABLE collected_nodes;
 DROP TABLE hibernate_sequence;
-DROP TABLE inventories;
-DROP TABLE items;
 DROP TABLE key_values;
 DROP TABLE node_types;
 DROP TABLE nodes;

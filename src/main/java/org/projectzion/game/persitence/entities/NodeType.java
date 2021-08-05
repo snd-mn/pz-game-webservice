@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Table(name="node_types")
 public class NodeType {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @OneToMany(mappedBy="nodeType")
