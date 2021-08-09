@@ -16,11 +16,11 @@ public class OsmMatcherNodeType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @ManyToOne
+    @ManyToOne//(cascade = {CascadeType.MERGE})
     @JoinColumn(name="osm_matcher_id")
     private OsmMatcher osmMatcher;
 
-    @ManyToOne
+    @ManyToOne//(cascade = {CascadeType.MERGE})
     @JoinColumn(name="node_type_id")
     private NodeType nodeType;
 

@@ -1,9 +1,5 @@
 package org.projectzion.game.utils.setup;
 
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.projectzion.game.configs.security.InitialUsersConfig;
 import org.projectzion.game.persitence.entities.security.Privilege;
 import org.projectzion.game.persitence.entities.security.Role;
@@ -12,13 +8,10 @@ import org.projectzion.game.persitence.repositories.RoleRepository;
 import org.projectzion.game.persitence.repositories.UserRepository;
 import org.projectzion.game.services.KeyValueService;
 import org.projectzion.game.utils.converter.UserTO2UserConverter;
-import org.projectzion.game.utils.json.serializer.DateDeserializer;
-import org.projectzion.game.utils.json.serializer.DateSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -31,8 +24,8 @@ import java.util.List;
 
 
 @Component
-public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
-    Logger logger = LoggerFactory.getLogger(SetupDataLoader.class);
+public class SetupUserLoader implements ApplicationListener<ContextRefreshedEvent> {
+    Logger logger = LoggerFactory.getLogger(SetupUserLoader.class);
 
     public static final String ROLE_SUPER_USER = "ROLE_SUPER_USER";
     public static final String ROLE_ADMIN = "ROLE_ADMIN";

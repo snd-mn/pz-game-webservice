@@ -11,13 +11,7 @@ import javax.persistence.*;
 @Table(name="target_systems")
 public class TargetSystem {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    String name;
-    String ip;
-    String user;
-    String password;
-    String token;
-    //TODO API KEY
 
+    String name;
 }

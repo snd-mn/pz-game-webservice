@@ -1,18 +1,25 @@
 package org.projectzion.game.controllers;
 
+import org.projectzion.game.persitence.entities.Node;
+import org.projectzion.game.persitence.entities.TargetSystem;
 import org.projectzion.game.persitence.entities.Tile;
 import org.projectzion.game.persitence.repositories.CollectedNodesRepository;
+import org.projectzion.game.persitence.repositories.NodeRepository;
+import org.projectzion.game.persitence.repositories.TargetSystemRepository;
 import org.projectzion.game.scoped.request.RequestScoped;
+import org.projectzion.game.services.CollectedNodeService;
+import org.projectzion.game.services.MmoConnectorService;
 import org.projectzion.game.services.PlayerService;
-import org.projectzion.game.tos.TilesRequest;
-import org.projectzion.game.tos.TilesResponse;
-import org.projectzion.game.tos.TileTo;
+import org.projectzion.game.tos.*;
 import org.projectzion.game.utils.UserPrincipal;
 import org.projectzion.game.utils.converter.Tile2TileToConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,14 +40,26 @@ public class TilesController {
     PlayerService playerService;
 
     @Autowired
+    NodeRepository nodeRepository;
+
+    @Autowired
+    MmoConnectorService mmoConnectorService;
+
+    @Autowired
     CollectedNodesRepository collectedNodesRepository;
+
+    @Autowired
+    CollectedNodeService collectedNodeService;
+
+    @Autowired
+    TargetSystemRepository targetSystemRepository;
 
     @Autowired
     Tile2TileToConverter tile2TileToConverter;
 
     @Transactional
     @GetMapping("tiles")
-    public TilesResponse getTilesFromGps(@RequestBody TilesRequest tilesRequest) throws Exception {
+    public ResponseEntity<TilesResponse> getTilesFromGps(@RequestBody TilesRequest tilesRequest) throws Exception {
         TilesResponse tilesResponse = new TilesResponse();
         UserPrincipal userPrincipal = requestScoped.currentUserPrincipal(); //TODO this is fucking long... shortcut!
 
@@ -52,6 +71,40 @@ public class TilesController {
         });
 
         tilesResponse.setTileTos(tileTos);
-        return tilesResponse;
+
+        return new ResponseEntity<TilesResponse>(tilesResponse, HttpStatus.OK);
+    }
+
+    @Transactional
+    @PostMapping("interact")
+    public ResponseEntity<InteractionResponse> interactWithNode(@RequestBody InteractionRequest interactionRequest) {
+        HttpStatus status = HttpStatus.OK;
+        InteractionResponse interactionResponse = new InteractionResponse();
+        interactionResponse.setInfo(InteractionResponse.FINE);
+        Node node = nodeRepository.findById(interactionRequest.getNode()).get();
+        TargetSystem targetSystem = targetSystemRepository.findById(interactionRequest.getTargetSystem()).get();
+        ///////////////////////////////////////
+        // todo cheat detection
+
+        ///////////////////////////////////////
+        // can i use this node?
+        // nope? skip contacting
+        boolean canInteract = collectedNodeService.isUserAbleToInteractWithNode(interactionRequest.getNode());
+
+        ///////////////////////////////////////
+        // contact mmoconnector
+        if(canInteract){
+            collectedNodeService.interactWithNode(interactionRequest.getNode());
+            Boolean isPickSend = mmoConnectorService.pick(node, targetSystem);
+            if(!isPickSend){
+                status = HttpStatus.INTERNAL_SERVER_ERROR;
+                interactionResponse.setInfo(InteractionResponse.FAIL);
+            }
+        }else{
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            interactionResponse.setInfo(InteractionResponse.FAIL);
+        }
+
+        return new ResponseEntity<InteractionResponse>(interactionResponse,status);
     }
 }

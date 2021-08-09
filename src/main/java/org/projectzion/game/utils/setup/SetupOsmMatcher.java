@@ -60,7 +60,7 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
                 nodeType.setId(1L);
                 nodeType.setCooldown(60);
                 nodeType.setDisplayResourceType(DisplayResourceType.CHEST);
-                nodeTypeRepository.save(nodeType);
+                nodeType = nodeTypeRepository.save(nodeType);
 
                 //OsmMatcher
                 OsmMatcher osmMatcher = new OsmMatcher();
@@ -68,14 +68,14 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
                 Map<NodeCriteraFilter, NodeCriteraFilterValue> filter = new HashMap<>();
                 filter.put(NodeCriteraFilter.AMENITY, NodeCriteraFilterValue.POST_BOX);
                 osmMatcher.setFilter(filter);
-                osmMatcherRepository.save(osmMatcher);
+                osmMatcher = osmMatcherRepository.save(osmMatcher);
 
                 //OsmMatcherNodeType
                 OsmMatcherNodeType osmMatcherNodeType = new OsmMatcherNodeType();
                 osmMatcherNodeType.setNodeType(nodeType);
                 osmMatcherNodeType.setOsmMatcher(osmMatcher);
                 osmMatcherNodeType.setChance(100);
-                osmMatcherNodeTypeRepository.save(osmMatcherNodeType);
+                osmMatcherNodeType = osmMatcherNodeTypeRepository.save(osmMatcherNodeType);
             }
             saveSetupDone();
         } catch (Exception e) {

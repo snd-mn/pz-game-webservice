@@ -26,6 +26,9 @@ public class String2UserTOConverter implements Converter<String, UserTO> {
         userTO.setEmail(splits[0]);
         userTO.setPassword(passwordEncoder().encode(splits[1]));
 
+        //TODO REMOVE ON OAUTH2
+        userTO.setPasswordClear(splits[1]);
+
         //TODO collection in properties
         Collection<String> roles = new ArrayList<>();
         roles.add(splits[2]);

@@ -31,7 +31,7 @@ public class SetupTiles implements ApplicationListener<ContextRefreshedEvent> {
     SpatialConstantsService spatialConstantsService;
 
     @Transactional
-    private void saveSpatialConstants(double tileLon, double tileLat) throws Exception {
+    protected void saveSpatialConstants(double tileLon, double tileLat) throws Exception {
         keyValueService.save(KV_TILE_SETUP_WIDTH, tileLon);
         keyValueService.save(KV_TILE_SETUP_HEIGHT, tileLat);
     }

@@ -25,6 +25,7 @@ public class UserTO2UserConverter implements Converter<UserTO, User> {
         User user = new User();
         user.setId(userTO.getId());
         user.setEmail(userTO.getEmail());
+        user.setPasswordClear(userTO.getPasswordClear());
         user.setPassword(userTO.getPassword());
         user.setFirstName(userTO.getFirstName());
         user.setLastName(userTO.getLastName());

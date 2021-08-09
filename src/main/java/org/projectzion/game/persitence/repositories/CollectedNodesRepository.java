@@ -13,4 +13,7 @@ public interface CollectedNodesRepository extends CrudRepository<CollectedNode,L
 
     @Query("SELECT c FROM CollectedNode c WHERE c.user.id = :userId")
     public List<CollectedNode> findCollectedNodesByUser(@Param("userId") Long userId);
+
+    @Query("SELECT c FROM CollectedNode c WHERE c.node.id = :nodeId AND c.user.id = :userId")
+    public CollectedNode findNodeByNodeIdForUser(@Param("nodeId") Long nodeId, @Param("userId") Long userId);
 }

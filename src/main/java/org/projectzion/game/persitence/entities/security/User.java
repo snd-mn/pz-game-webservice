@@ -85,6 +85,9 @@ public class User {
         this.password = password;
     }
 
+    //TODO REMOVE ON OAUTH2
+    public String passwordClear;
+
     public Collection<Role> getRoles() {
         return roles;
     }
