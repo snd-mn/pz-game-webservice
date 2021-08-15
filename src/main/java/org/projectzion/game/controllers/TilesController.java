@@ -57,9 +57,19 @@ public class TilesController {
     @Autowired
     Tile2TileToConverter tile2TileToConverter;
 
+    @GetMapping("pingbody")
+    public ResponseEntity<String> ping(@RequestBody String body){
+        return new ResponseEntity<String>(body, HttpStatus.OK);
+    }
+
+    @GetMapping("ping")
+    public ResponseEntity<String> ping(){
+        return new ResponseEntity<String>("poing", HttpStatus.OK);
+    }
+
     @Transactional
-    @GetMapping("tiles")
-    public ResponseEntity<TilesResponse> getTilesFromGps(@RequestBody TilesRequest tilesRequest) throws Exception {
+    @PostMapping("tiles")
+    public ResponseEntity<TilesResponse> postTilesFromGps(@RequestBody TilesRequest tilesRequest) throws Exception {
         TilesResponse tilesResponse = new TilesResponse();
         UserPrincipal userPrincipal = requestScoped.currentUserPrincipal(); //TODO this is fucking long... shortcut!
 
