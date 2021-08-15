@@ -28,25 +28,25 @@ public class PlayerService {
     @SneakyThrows
     public Set<Tile> getOrCreateNearTiles(Gps gps){
         Set<Tile> tiles = new HashSet<>();
-        int[] center = tileService.getTileCoordinatesFromGps(gps.getLon(), gps.getLat());
+        Long[] center = tileService.getTileCoordinatesFromGps(gps.getLon(), gps.getLat());
         //0 1 2
         //3 4 5
         //6 7 8
-        List<int[]> list = new ArrayList<>(9);
+        List<Long[]> list = new ArrayList<>(9);
 
-        list.add(new int[]{(center[0]-1), (center[1]+1)});
-        list.add(new int[]{(center[0]), (center[1]+1)});
-        list.add(new int[]{(center[0]+1), (center[1]+1)});
+        list.add(new Long[]{(center[0]-1), (center[1]+1)});
+        list.add(new Long[]{(center[0]), (center[1]+1)});
+        list.add(new Long[]{(center[0]+1), (center[1]+1)});
 
-        list.add(new int[]{(center[0]-1), (center[1])});
-        list.add(new int[]{(center[0]), (center[1])});
-        list.add(new int[]{(center[0]+1), (center[1])});
+        list.add(new Long[]{(center[0]-1), (center[1])});
+        list.add(new Long[]{(center[0]), (center[1])});
+        list.add(new Long[]{(center[0]+1), (center[1])});
 
-        list.add(new int[]{(center[0]-1), (center[1]-1)});
-        list.add(new int[]{(center[0]), (center[1]-1)});
-        list.add(new int[]{(center[0]+1), (center[1]-1)});
+        list.add(new Long[]{(center[0]-1), (center[1]-1)});
+        list.add(new Long[]{(center[0]), (center[1]-1)});
+        list.add(new Long[]{(center[0]+1), (center[1]-1)});
 
-        for (int[] coords : list) {
+        for (Long[] coords : list) {
             Tile tile = tileService.getTileFromCoords(coords);
             if (tile == null) {
                 tile = tileService.createTileFromCoords(coords);

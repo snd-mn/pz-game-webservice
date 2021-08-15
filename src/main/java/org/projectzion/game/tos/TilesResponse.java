@@ -7,5 +7,5 @@ import java.util.List;
 
 @Data
 public class TilesResponse {
-    List<TileTo> tileTos;
+    List<TileTo> tiles;
 }

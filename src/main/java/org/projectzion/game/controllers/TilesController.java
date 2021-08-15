@@ -80,7 +80,7 @@ public class TilesController {
             tileTos.add(tile2TileToConverter.convert(tile));
         });
 
-        tilesResponse.setTileTos(tileTos);
+        tilesResponse.setTiles(tileTos);
 
         return new ResponseEntity<TilesResponse>(tilesResponse, HttpStatus.OK);
     }

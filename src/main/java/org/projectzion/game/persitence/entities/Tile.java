@@ -18,9 +18,9 @@ public class Tile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @Column(nullable = false)
-    int x;
+    Long x;
     @Column(nullable = false)
-    int y;
+    Long y;
     @Column(nullable = false)
     double bboxEast;
     @Column(nullable = false)

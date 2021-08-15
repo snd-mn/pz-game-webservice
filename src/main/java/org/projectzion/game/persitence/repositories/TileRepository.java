@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface TileRepository extends CrudRepository<Tile, String> {
     @Query("SELECT t FROM Tile t where t.x = :x and t.y = :y")
-    Tile findByXY(@Param("x")int x, @Param("y")int y);
+    Tile findByXY(@Param("x")Long x, @Param("y")Long y);
 }

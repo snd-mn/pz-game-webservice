@@ -6,6 +6,7 @@ import java.util.List;
 
 @Data
 public class TileTo {
-    int x, y;
-    List<NodeTo> nodeTos;
+    Long id;
+    Long x, y;
+    List<NodeTo> nodes;
 }

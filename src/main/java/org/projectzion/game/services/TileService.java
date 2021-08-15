@@ -24,22 +24,22 @@ public class TileService {
         return createTileFromCoords(getTileCoordinatesFromGps(x,y));
     }
 
-    public int[] getTileCoordinatesFromGps(double x, double y){
+    public Long[] getTileCoordinatesFromGps(double x, double y){
         //move to the positive side (of life :D)
         //reuse, yeah shitty, but will be callet 3000x a sec
 //        x = x+180;
 //        y = y+90;
-        int qx = (int)( x / spatialConstantsService.getTileSizeX());
-        int qy = (int)( y / spatialConstantsService.getTileSizeY());
-        return new int[]{qx,qy};
+        Long qx = ((Double)( x / spatialConstantsService.getTileSizeX())).longValue();
+        Long qy = ((Double)( y / spatialConstantsService.getTileSizeY())).longValue();
+        return new Long[]{qx,qy};
     }
 
-    public Tile getTileFromCoords(int[] xy){
+    public Tile getTileFromCoords(Long[] xy){
         Tile tile = tileRepository.findByXY(xy[0],xy[1]);
         return tile;
     }
 
-    public Tile createTileFromCoords(int[] xy){
+    public Tile createTileFromCoords(Long[] xy){
         Tile tile = new Tile();
         tile.setX(xy[0]);
         tile.setY(xy[1]);

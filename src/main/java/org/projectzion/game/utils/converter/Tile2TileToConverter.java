@@ -28,6 +28,7 @@ public class Tile2TileToConverter implements Converter<Tile, TileTo> {
     @Override
     public TileTo convert(Tile tile) {
         TileTo tileTo = new TileTo();
+        tileTo.setId(tile.getId());
         tileTo.setX(tile.getX());
         tileTo.setY(tile.getY());
         List<NodeTo> nodeTos = new ArrayList<>();
@@ -47,7 +48,7 @@ public class Tile2TileToConverter implements Converter<Tile, TileTo> {
                 nodeTo.setNextAvailability(nextAvailability.get());
             });
         });
-        tileTo.setNodeTos(nodeTos);
+        tileTo.setNodes(nodeTos);
 
         return tileTo;
     }
