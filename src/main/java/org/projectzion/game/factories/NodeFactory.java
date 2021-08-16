@@ -136,7 +136,7 @@ public class NodeFactory {
 
         //TODO no BigDecimal plz
         Coordinate[] coordinates = new Coordinate[1];
-        coordinates[0] = new Coordinate(element.getLon(),element.getLat());
+        coordinates[0] = new Coordinate(element.getLat(),element.getLon()); // :D
         Double cordinateSequence = new Double(coordinates,2);
         Point point = new Point(cordinateSequence,getGeometryFactory());
 

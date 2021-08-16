@@ -7,7 +7,8 @@ import java.util.Map;
 @Data
 public class NodeTo {
     private Long id;
-    double lon, lat;
+    double lon;
+    double lat;
     long nextAvailability;
     private Long nodeType;
 }
