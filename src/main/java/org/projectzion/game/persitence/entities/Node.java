@@ -20,8 +20,6 @@ public class Node {
 
     private Long osmId;
 
-    private int respawnTime;
-
     @ManyToOne
     private NodeType nodeType;
 

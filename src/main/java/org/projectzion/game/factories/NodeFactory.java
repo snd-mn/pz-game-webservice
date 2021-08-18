@@ -144,7 +144,6 @@ public class NodeFactory {
         node.setNodeType(nodeType);
         node.setGps(point);
         node.setOsmId(element.getId());
-        node.setRespawnTime(nodeType.getCooldown());
         node.setTile(tile);
 
         return node;
@@ -176,7 +175,6 @@ public class NodeFactory {
         Point point = (Point) SpatialUtils.wktToGeometry("POINT (" + turboElement.getLat() + " " + turboElement.getLon() +")");
         node.setGps(point);
         node.setOsmId(turboElement.getId());
-        node.setRespawnTime(getRespawnTime());
 //        node.setNodeType(getNodeType());
         return node;
     }

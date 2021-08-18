@@ -58,7 +58,7 @@ public class SetupOsmMatcher implements ApplicationListener<ContextRefreshedEven
                 //NodeType
                 NodeType nodeType = new NodeType();
                 nodeType.setId(1L);
-                nodeType.setCooldown(60);
+                nodeType.setCooldown(10000);
                 nodeType.setDisplayResourceType(DisplayResourceType.CHEST);
                 nodeType = nodeTypeRepository.save(nodeType);
 

@@ -104,12 +104,12 @@ public class TilesController {
         ///////////////////////////////////////
         // contact mmoconnector
         if(canInteract){
-            collectedNodeService.interactWithNode(interactionRequest.getNode());
             Boolean isPickSend = mmoConnectorService.pick(node, targetSystem);
             if(!isPickSend){
                 status = HttpStatus.INTERNAL_SERVER_ERROR;
                 interactionResponse.setInfo(InteractionResponse.FAIL);
             }
+            collectedNodeService.interactWithNode(interactionRequest.getNode());
         }else{
             status = HttpStatus.INTERNAL_SERVER_ERROR;
             interactionResponse.setInfo(InteractionResponse.FAIL);

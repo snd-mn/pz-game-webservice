@@ -52,7 +52,7 @@ public class CollectedNodeService {
             collectedNode.setUser(user);
         }
 
-        collectedNode.setNextAvailability(node.get().getRespawnTime() + new Date().getTime());
+        collectedNode.setNextAvailability(node.get().getNodeType().getCooldown() + new Date().getTime());
 
         collectedNodesRepository.save(collectedNode);
     }
